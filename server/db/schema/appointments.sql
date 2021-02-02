@@ -1,9 +1,0 @@
-DROP TABLE IF EXISTS appointments CASCADE;
-
-CREATE TABLE appointments (
-  id SERIAL PRIMARY KEY NOT NULL,
-  start_date DATE NOT NULL,
-  provider_id INTEGER REFERENCES providers(id) ON DELETE CASCADE,
-  customer_id INTEGER REFERENCES customers(id) ON DELETE CASCADE
-  bid_id INTEGER REFERENCES bids(id) ON DELETE CASCADE
-);

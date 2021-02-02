@@ -22,7 +22,5 @@ CREATE TABLE job_postings(
   faith VARCHAR(255),
   country VARCHAR(255),
   professional_expertise VARCHAR(255),
-  customer_id INTEGER REFERENCES customers(id) ON DELETE CASCADE,
-  budget_id INTEGER REFERENCES budgets(id) ON DELETE CASCADE,
-  preference_id INTEGER REFERENCES preferences(id) ON DELETE CASCADE,
+  customer_id INTEGER REFERENCES customers(id) ON DELETE CASCADE
 );

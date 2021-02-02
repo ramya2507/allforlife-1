@@ -8,6 +8,7 @@ CREATE TABLE providers(
     degree VARCHAR(255),
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
+    address VARCHAR(255),
     description TEXT,
     license VARCHAR(255) NOT NULL,
     certificate FILE,
@@ -15,5 +16,9 @@ CREATE TABLE providers(
     ethnicity VARCHAR(255),
     faith VARCHAR(255),
     country VARCHAR(255),
-    professional_expertise VARCHAR(255)
+    category VARCHAR(255),
+    professional_expertise VARCHAR(255),
+    specialities VARCHAR(255),
+    issues VARCHAR(255),
+    therapy VARCHAR(255)
 );

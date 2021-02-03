@@ -32,6 +32,24 @@ const checkEmail = function(db, email) {
     .catch(err => err);
 };
 
+//function to add customer to the database
+const createCustomerAccount = (db, prefix, firstName, lastName, email, password) => {
+  const insertQuery = {
+    text: `INSERT INTO users(prefix, first_name, last_name, email, password)
+    VALUES($1, $2, $3, $4, $5) RETURNING *;`,
+    values: [
+      prefix,
+      firstName,
+      lastName,
+      email,
+      bcrypt.hashSync(password, 10),
+    ],
+  };
+  return db
+    .query(insertQuery)
+    .then(res => res)
+    .catch(err => err);
+};
 
 
-module.exports = { loginCustomer, checkEmail };
+module.exports = { loginCustomer, checkEmail, createCustomerAccount };

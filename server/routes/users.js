@@ -4,47 +4,6 @@ const router = express.Router();
 
 const { getUserWithEmail, addUser } = require('../util/customerHelpers');
 
-
-
-//mock data
-const users = [
-  { id: 1,
-    name: 'Kelechi Obikaonu',
-    email: 'kelechipauline@gmail.com',
-    pasword: 'lighthouselabs'
-  },
-  { id: 2,
-    name: 'Ramya Adimoolan',
-    email: 'ramya@gmail.com',
-    pasword: 'lighthouselabs'
-  },
-  { id: 3,
-    name: 'Fatima Fatima',
-    email: 'fatima@gmail.com',
-    pasword: 'lighthouselabs'
-  },
-  { id: 4,
-    name: 'Deepthy Sharon',
-    email: 'deepthy@gmail.com',
-    pasword: 'lighthouselabs'
-  },
-  { id: 5,
-    name: 'Kelechi Mary',
-    email: 'pauline@gmail.com',
-    pasword: 'lighthouselabs'
-  },
-  { id: 6,
-    name: 'Williams Greg',
-    email: 'greg@gmail.com',
-    pasword: 'lighthouselabs'
-  },
-  { id: 7,
-    name: 'Chimuru pauline',
-    email: 'chi@gmail.com',
-    pasword: 'lighthouselabs',
-  },
-];
-
 //api routes
 
 module.exports = (db) => {
@@ -66,23 +25,8 @@ module.exports = (db) => {
     res.send(user);
   });
   
-  // router.post('/', async(req, res) => {
-  //   const { prefix, firstName, lastName, email, password } = req.body;
-  //   try {
-  //     await db.query(`
-  //     INSERT INTO customers (prefix, first_name, last_name, email, password)
-  //     VALUES($1, $2, $3, $4, $5)
-  //     RETURNING *;
-  //     `, [prefix, firstName, lastName, email, password]);
-  //     res.redirect('/api/users');
-  //   } catch (e) {
-  //     console.error(e.message);
-  //   }
-  // });
-
   //registration route
-
-  router.post('/', (req, res) => {
+  router.post('/register', (req, res) => {
     const { prefix, firstName, lastName, email, password } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 12);
   
@@ -104,7 +48,8 @@ module.exports = (db) => {
           return;
         }
         addUser(userData, db).then(newUser => {
-          console.log(newUser);
+          //console.log(newUser);
+          //cookies.........
           // req.session['userID'] = newUser['id'];
           res.send({message: "registered new user" });
           return;
@@ -112,11 +57,38 @@ module.exports = (db) => {
           .catch(e => res.send("error"));
           
       })
-      .catch(e => res.send(e));
+      .catch(e => {
+        res.status(500).json({ error: e.message});
+      });
   });
-  return router;
+  
+  //login route
+  router.post('/login', (req, res) => {
+    const {email, password} = req.body;
+    getUserWithEmail(email, db)
+      .then(user => {
+        if (!user) {
+          res.send("Email does not exist");
+        } else if (!bcrypt.compareSync(password, user['password'])) {
+          res.send("Password is incorrect");
+          return;
+        }
+        res.send("found you");
+        //cookies session.................
+      })
+      .catch(e => {
+        if (e) {
+          res.status(401).json({ error: e.message });
+        }
+      });
+  });
 
+
+  return router;
 };
+
+
+
 
 
 

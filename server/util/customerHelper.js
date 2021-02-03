@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 //function to validate login information 
 const loginCustomer = function(db, email, password) {
   const query = {
-    text: `SELECT * FROM users WHERE email = $1` ,
+    text: `SELECT * FROM customers WHERE email = $1` ,
     values: [email]
   };
 
@@ -23,7 +23,7 @@ const loginCustomer = function(db, email, password) {
 //function to check email when registering
 const checkEmail = function(db, email) {
   const query = {
-    text: `SELECT * FROM users WHERE email = $1;`,
+    text: `SELECT * FROM customers WHERE email = $1;`,
     values: [email],
   };
   return db
@@ -31,5 +31,7 @@ const checkEmail = function(db, email) {
     .then(res => res)
     .catch(err => err);
 };
+
+
 
 module.exports = { loginCustomer, checkEmail };

@@ -13,6 +13,7 @@ const getUserWithEmail = (email, db) => {
     });
 };
 
+//function to add a new user to the database
 const addUser = (userData, db) => {
   const {prefix, firstName, lastName, email, password } = userData;
   return db.query(`

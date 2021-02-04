@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const PORT = 3001;
+const path = require("path");
+const PORT = 8001;
 const db = require("./db/dbIndex");
 const bodyParser = require('body-parser');
 
@@ -12,6 +13,8 @@ const users = require("./routes/users");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, "public")));
 
 //routes
 app.use("/api/users", users(db));

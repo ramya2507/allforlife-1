@@ -44,14 +44,13 @@ module.exports = (db) => {
     getUserWithEmail(email, db)
       .then(response => {
         if (response) {
-          res.send({error: "An account with this email exist"});
+          res.json([]);
           return;
         }
         addUser(userData, db).then(newUser => {
-          //console.log(newUser);
-          //cookies.........
-          // req.session['userID'] = newUser['id'];
-          res.send({message: "registered new user" });
+          req.session.customerId=newUser .id;
+          console.log(req.session.customerId)
+          res.json(newUser);
           return;
         })
           .catch(e => res.send("error"));
@@ -68,13 +67,14 @@ module.exports = (db) => {
     getUserWithEmail(email, db)
       .then(user => {
         if (!user) {
-          res.send("Email does not exist");
+          res.json([]);
         } else if (!bcrypt.compareSync(password, user['password'])) {
-          res.send("Password is incorrect");
+          res.json([]);
           return;
         }
-        res.send("found you");
-        //cookies session.................
+        req.session.customerId=user.id;
+        console.log(req.session.customerId)
+        res.json(user);
       })
       .catch(e => {
         if (e) {

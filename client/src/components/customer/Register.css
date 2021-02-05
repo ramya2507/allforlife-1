@@ -1,0 +1,108 @@
+body {
+   
+  margin:0px;
+  font-family: 'Ubuntu', sans-serif;
+    background-size: 100% 100%;
+}
+h1, h2, h3, h4, h5, h6, a {
+  margin:0; padding:0;
+}
+.register {
+  margin:50px 70px;
+  max-width:500px;
+}
+
+
+.register-container{
+  border: solid 2px black;
+  background-image: url('woman_big-min.png');
+  background-size: cover;
+  width: 100%;
+
+}
+
+
+
+.register-form {
+  border:.5px solid rgb(119, 117, 117);
+  background:#eaecee;
+  border-radius:10px;
+  box-shadow:0px 0px 10px #000;
+}
+.register-form h3 {
+  text-align:left;
+  margin-left:40px;
+  color:black;
+  font-size: 0.8rem;
+}
+
+.register-form {
+  box-sizing:border-box;
+  padding-top:5px;
+  padding-bottom:5%;
+  margin:5% auto;
+  text-align:center;
+}
+.register-form h2{
+  font-size: 1.2rem;
+}
+.register input[type="text"],
+.register input[type="password"] ,
+.register input[type="email"], select {
+  max-width:400px;
+  width: 80%;
+  line-height:3em;
+  font-family: 'Ubuntu', sans-serif;
+  margin:0em 2em;
+  border-radius:5px;
+  border:2px solid #f2f2f2;
+  outline:none;
+  padding-left:10px;
+}
+.register-form input[type="submit"] {
+  margin-top: 1rem;
+  width:170px;
+  background:#ffc107;
+  border:1px solid #ffc107;
+  color:white;
+  text-transform:uppercase;
+  font-family: 'Ubuntu', sans-serif;
+  cursor:pointer;
+  height: 40px;
+}
+.register-form input[type="submit"]:hover {
+  border:2px solid black;
+}
+
+
+
+
+/*Media Querie*/
+@media only screen and (max-width : 530px){
+  .register-form h3 {
+    text-align:center;
+    margin:0;
+  }
+  .register {
+    margin:0;
+    max-width:500px;
+  }
+  
+  .register-button {
+    margin-bottom:10px;
+  }
+
+  .register input[type="text"],
+  .register input[type="password"] ,
+  .register input[type="email"], select{
+  max-width:400px;
+  width: 30%;
+  line-height:1em;
+  font-family: 'Ubuntu', sans-serif;
+  margin:1em 2em;
+  border-radius:5px;
+  border:2px solid #f2f2f2;
+  outline:none;
+  padding-left:5px;
+}
+}

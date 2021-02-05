@@ -1,0 +1,137 @@
+.post-description-container{
+  background-color:rgb(243, 241, 241);
+  background-size: cover;
+
+  width: 100%;
+  height: 100%;
+  border: solid 0.5px rgb(243, 241, 241);
+}
+.post-description-progress{
+  margin-top: 40px ;
+  margin-left: 20%;
+  width: 60%;
+  background-image: url('./images/progressBar1.png');
+  background-repeat: no-repeat;
+  height: 50px;
+  background-size: contain;
+  
+}
+
+h3{
+  margin-left: 10px;
+  color: #2c385c;
+}
+
+.job-container {
+  display :flex;
+  
+}
+.problemDescription{
+  width: 32%;
+  display :flex;
+  flex-direction: column;
+}
+
+p{
+  margin-top: 10px;
+  margin-left: 10% ;
+  width: 60%;
+  letter-spacing: 1px;
+  color:gray;
+}
+
+img{
+  margin-top: 10px;
+  width: 80%;
+  height: 230px;
+  
+}
+
+div img {
+  width: 100%;
+  margin-left:-76px;
+  
+}
+.description{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+textarea{
+  margin-top: 10px;
+  width: 80%;
+  height: 250px;
+  border: solid 1px gray;
+}
+
+.description-container {
+  background-color: white;
+  margin-top: 50px;
+  margin-left:17%;
+  margin-bottom: 80px;
+  width:70%;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.button-nav{
+ width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  
+}
+.button-nav  button{
+width:130px;
+font-weight: bold;
+font-size: 1rem;
+margin-left: 15px;
+margin-top: 10px;
+margin-bottom: 20px;
+height: 40px;
+background:#f5c107;
+border:1px solid #f5c107;
+color:white;
+border: 1px solid #f5c107;
+border-radius: 2px;
+font-family: 'Ubuntu', sans-serif;
+cursor:pointer;
+}
+
+
+
+/*Media Querie*/
+@media only screen and (max-width : 630px){
+  .job-container{
+    display :flex;
+    flex-direction: row;
+  }
+  .button-nav{
+  
+     display: flex;
+     flex-direction: column ; 
+     margin-left: 30%;
+
+   }
+   .button-nav, .problemDescription, .description {
+    width: 100%;
+  }
+​
+​
+  .description-container{
+    width: auto;
+    margin-left: 0px;
+  }
+  .post-description-progress{
+    display: none;
+  }
+  textarea , h3{
+    margin-left: 10%;
+  }
+  
+}

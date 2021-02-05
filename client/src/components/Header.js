@@ -1,15 +1,9 @@
-import React from 'react'
+import React from "react";
+import "./Header.css";
+import logo from "../images/logo1.png";
 
-export default function Header() {
+export default function Header(props) {
 
-  return(
-    <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
-      <h1 class="logo me-auto"><a href="index.html">ALL FOR<span>LIFE</span></a></h1>
-      <nav class="nav-menu d-none d-lg-block">  
-      </nav>
-    </div>
-  </header>
-
-  )
+    return <header className="header-container">  
+    </header>
 }

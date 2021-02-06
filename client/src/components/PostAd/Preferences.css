@@ -1,0 +1,99 @@
+.post-description-container{
+  background-color:rgb(243, 241, 241);
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  border: solid 0.5px rgb(243, 241, 241);
+
+}
+.post-description-progress{
+  margin-top: 40px ;
+  margin-left: 20%;
+  width: 60%;
+  background-repeat: no-repeat;
+  height: 50px;
+  background-size: contain;
+  
+}
+.post-description-progress1{
+  display:none;
+}
+
+
+.description-container{
+
+  background-color: white;
+  margin-top: 50px;
+  margin-left:17%;
+  margin-bottom: 80px;
+  width:70%;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.h3-heading{
+  padding: 2%;
+}
+
+
+.preference-details h5{
+  margin-left: 25px;
+}
+
+.preference-details select {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 90%;
+  height: 50px;
+  color: gray;
+  line-height:3em;
+
+}
+
+
+
+
+
+.button-nav1{
+  width: 95%;
+   display: flex;
+   justify-content: flex-end;
+   
+   
+ }
+ .button-nav1  button{
+ width:130px;
+ font-weight: bold;
+ font-size: 1rem;
+ margin-left: 15px;
+ margin-top: 10px;
+ margin-bottom: 20px;
+ height: 40px;
+ background:#f5c107;
+ border:1px solid #f5c107;
+ color:white;
+ border: 1px solid #f5c107;
+ border-radius: 2px;
+ font-family: 'Ubuntu', sans-serif;
+ cursor:pointer;
+ }
+
+
+/*Media Querie*/
+@media only screen and (max-width : 630px){
+
+  .post-description-progress2{
+    display: none;
+  }
+
+  .button-nav1{
+  
+    display: flex;
+    flex-direction: column ; 
+    margin-left: 30%;
+    width: 100%;
+
+  }
+  
+}

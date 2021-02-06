@@ -1,0 +1,101 @@
+.login {
+  margin:80px 70px;
+  max-width:500px;
+  margin-bottom: 130px;
+}
+
+
+.login-container{
+  border: solid 2px black;
+  background-image: url('../../images/woman_big-min.png');
+  background-size: cover;
+  width: 100%;
+}
+
+.alert-error {
+  color :red;
+  margin-top: 10px;
+}
+
+.login-form {
+  border:.5px solid rgb(119, 117, 117);
+  background:#eaecee;
+  border-radius:10px;
+  box-shadow:0px 0px 10px #000;
+}
+.login-form h3 {
+  text-align:left;
+  margin-left:40px;
+  color:black;
+  font-size: 0.8rem;
+}
+
+.login-form {
+  box-sizing:border-box;
+  padding-top:10px;
+  padding-bottom:5%;
+  margin:5% auto;
+  text-align:center;
+}
+.login-form h2{
+  font-size: 1.5rem;
+}
+.login input[type="text"],
+.login input[type="password"] {
+  max-width:400px;
+  width: 80%;
+  line-height:3em;
+  font-family: 'Ubuntu', sans-serif;
+  margin:1em 2em;
+  border-radius:5px;
+  border:2px solid #f2f2f2;
+  outline:none;
+  padding-left:10px;
+}
+.login-form input[type="submit"] {
+  width:100px;
+  background:#ffc107;
+  border:1px solid #ffc107;
+  color:white;
+  text-transform:uppercase;
+  font-family: 'Ubuntu', sans-serif;
+  cursor:pointer;
+  padding:0px;
+  margin:0px;
+  height: 40px;
+}
+.login-form input[type="submit"]:hover {
+  border:2px solid black;
+}
+
+
+
+
+/*Media Querie*/
+@media only screen and (max-width : 530px){
+  .login-form h3 {
+    text-align:center;
+    margin:0;
+  }
+  .login {
+    margin:0;
+    max-width:500px;
+  }
+  
+  .login-button {
+    margin-bottom:10px;
+  }
+
+  .login input[type="text"],
+.login input[type="password"] {
+  max-width:400px;
+  width: 30%;
+  line-height:1em;
+  font-family: 'Ubuntu', sans-serif;
+  margin:1em 2em;
+  border-radius:5px;
+  border:2px solid #f2f2f2;
+  outline:none;
+  padding-left:5px;
+}
+}

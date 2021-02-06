@@ -1,0 +1,49 @@
+.post-description-progress2{
+  margin-top: 40px ;
+  margin-left: 20%;
+  width: 60%;
+  background-repeat: no-repeat;
+  height: 50px;
+  background-size: contain;  
+}
+
+.container-symptomes{
+  width: 70%;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  border-right: gray solid 2px;
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  justify-content:space-around;
+}
+
+.symptomes{
+  padding: 0;
+  margin: 5px;
+  
+}
+.symptomes button {
+  color :white;
+  font-size: 0.9rem;
+  background-color: #2c385c;
+  border: solid 1px #2c385c;
+  border-radius: 20px;
+}
+.symptomes button:visited{
+  background-color: #5c3f2c;
+}
+h5{
+  margin-left: 25px;
+}
+
+.details-others select {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 90%;
+  height: 50px;
+  color: gray;
+  background-color: white;
+  line-height:3em;
+
+}

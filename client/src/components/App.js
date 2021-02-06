@@ -1,7 +1,12 @@
-import React , {useState} from "react";
+import react , {useState} from "react";
 import './App.css';
+import Footer from  "./Footer";
 import Header from "./Header";
-import JobPost from "./Jobpost/Index";
+import PostAd from "./PostAd";
+
+
+import Login from "./customer/Login"
+import Register from "./customer/Register";
 
 
 function App() {
@@ -11,7 +16,9 @@ const [user,setUser]= useState(null);
   return (
   <>
     <Header />
-    <JobPost/>
+    {!user && <PostAd setUser={setUser}/>}
+    {user && <h1>Hi {user.first_name} !</h1>}
+    <Footer />
   </> );
 }
 

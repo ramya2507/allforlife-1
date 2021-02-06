@@ -8,7 +8,10 @@ import Availability from "./Availability";
 import Review from "./Review";
 import Landing from "./Landing"
 
+//helper filer
+import useVisualMode from '../hooks/useVisualMode'
 
+//DECLEARING CONSTANTS
 const LANDING = "LANDING";
 const DESCRIPTION ="DESCRIPTION";
 const DETAILS= "DETAILS";
@@ -17,34 +20,26 @@ const BUDGET = "BUDGET";
 const AVAILABILITY = "AVAILABILITY";
 const REVIEW = "REVIEW";
 
+
+//PostAd component
 export default function PostAd(props){
 
-
-  const [mode,setMode]=useState('DESCRIPTION');
-
-  //transitioning function
-  function transition(newMode){
-      setMode(newMode)
-  }
-
+  const {mode, transition, back} = useVisualMode(DESCRIPTION)
 
   //posting function
   function post() {
 
   }
 
-  //back function
-
-
   return(
     <>
-    { mode === "LANDING" && <Landing onStrat={transition}/>}
-    { mode === "DESCRIPTION" && <ProblemDescription onBack={transition} onNext={transition}/>}
-    { mode === "DETAILS" && <Details onBack={transition} onNext={transition}/> } 
-    { mode === "PREFERENCES" && <Preferences onBack={transition} onNext={transition}/> } 
-    { mode === "PUDGET" && <Budget onBack={transition} onNext={transition}/> } 
-    { mode === "AVAILABILITY" && <Availability onBack={transition} onNext={transition}/> } 
-    { mode === "REVIEW" && <Review onBack={transition} OnPost={post}/> } 
+    { mode === "LANDING" && <Landing onStrat={() =>transition(DESCRIPTION)}/>}
+    { mode === "DESCRIPTION" && <ProblemDescription onBack={() =>back(LANDING)} onNext={() =>transition(DETAILS)}/>}
+    { mode === "DETAILS" && <Details onBack={() =>back(DESCRIPTION)} onNext={() =>transition(PREFERENCES)}/> } 
+    { mode === "PREFERENCES" && <Preferences onBack={() =>back(DETAILS)} onNext={() =>transition(BUDGET)}/> } 
+    { mode === "BUDGET" && <Budget onBack={() =>back(PREFERENCES)} onNext={() =>transition(AVAILABILITY)}/> } 
+    { mode === "AVAILABILITY" && <Availability onBack={() =>back(BUDGET)} onNext={() =>transition(REVIEW)}/> } 
+    { mode === "REVIEW" && <Review onBack={() =>back(AVAILABILITY)} OnPost={post}/> } 
     
     </>  )
 }

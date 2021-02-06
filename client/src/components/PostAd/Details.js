@@ -1,5 +1,7 @@
 import React from 'react'
 import Timeline from './TimeLine'
+import Button from './Button'
+
 import "./Details.css"
 
 const symptomes=["Addiction", "Adoption","Anxiety",
@@ -62,8 +64,7 @@ export default function Details(props) {
                         </select>
                     </div>                      
                     <div className="button-nav1">
-                            <button onClick= {()=>props.onBack("DESCRIPTION")}> {"<"} Back</button>
-                            <button onClick= {()=>props.onNext("PREFERENCES")}>Next {">"}</button>
+                    <Button onBack={props.onBack} onNext={props.onNext}/>
                     </div>      
                
                 </div>

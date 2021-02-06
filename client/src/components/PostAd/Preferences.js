@@ -1,5 +1,6 @@
 import React from "react";
 import Timeline from './TimeLine'
+import Button from './Button'
 
 import "./Preferences.css";
 
@@ -49,8 +50,7 @@ export default function Preferences(props) {
                   </select>
                 </div>                      
                 <div className="button-nav1">
-                            <button onClick= {()=>props.onBack("DETAILS")}> {"<"} Back</button>
-                            <button onClick= {()=>props.onNext("BUDGET")}>Next {">"}</button>
+                <Button onBack={props.onBack} onNext={props.onNext}/>
                 </div>
             </div>              
         </div>

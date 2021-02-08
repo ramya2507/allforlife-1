@@ -8,8 +8,7 @@ export default function Timeline() {
 	<ul>
 		<li class=""><div class="step-inner">Problem Description</div></li>
 		<li class=""><div class="step-inner">Details</div></li>
-		<li class=""><div class="step-inner">Expertise</div></li>
-		<li class=""><div class="step-inner">Visibility</div></li>
+		<li class=""><div class="step-inner">Preferences</div></li>
 		<li class=""><div class="step-inner">Budget</div></li>
 		<li class=""><div class="step-inner">Availability</div></li>
 		<li class=""><div class="step-inner">Review</div></li>

@@ -49,8 +49,9 @@ export default function Preferences(props) {
                     {country.map((item) => {return <option key={item.index}> {item} </option>})}
                   </select>
                 </div>                      
-                <div className="button-nav1">
-                <Button onBack={props.onBack} onNext={props.onNext}/>
+                <div className="button-nav">
+                  <Button onBack={props.onBack} name="Back"/>
+                  <Button onNext={props.onNext} name="Next"/>
                 </div>
             </div>              
         </div>

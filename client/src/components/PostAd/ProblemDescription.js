@@ -21,7 +21,11 @@ export default function PostDescription(props) {
                         </div>
                         <div className="description">
                             <textarea > </textarea>
-                            <Button onBack={props.onBack} onNext={props.onNext}/>
+                            <div className="button-nav">
+                            <Button onBack={props.onBack} name="Back"/>
+                            <Button onNext={props.onNext} name="Next"/>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

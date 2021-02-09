@@ -15,7 +15,11 @@ export default function JobPost(props) {
                   <UserType type="Myself" img="user"message="I am looking for professional help for myself"/>
                   <UserType type="Loved One" img="user2"message="I am looking for professional help for a loved one"/>
                 </div>
-                <button type="button" class="btn btn-primary">Start</button>
+                <div className="button">
+                <Button onNext={props.onNext}  name="Start"/>
+                </div>
+                
+                
                 
                 
             </div>

@@ -1,6 +1,8 @@
 import React from "react";
-import Timeline from './TimeLine'
+
+import Select from "./Select";
 import Button from './Button'
+import Timeline from './TimeLine'
 
 import "./Preferences.css";
 
@@ -16,9 +18,7 @@ export default function Preferences(props) {
 
         <>
         <div className="post-description-container">
-          <Timeline />
-                 <div className="post-description-progress2">
-                </div>
+        <Timeline  width={props.timeline}/>
                 <div className="post-description-progress1">
                    <span>Step 3/6</span> 
                 </div>
@@ -28,30 +28,38 @@ export default function Preferences(props) {
                     <h3>Preferences</h3>
                   </div>           
                 <div className="preference-details">
-                  <h5>LANGUAGE</h5>
-                  <select >
-                    <option></option>
-                    {language.map((item) => {return <option key={item.index}> {item} </option>})}
-                  </select>
-                  <h5>ETHNICITY </h5>
-                  <select >
-                    <option></option>
-                    {ethnicity.map((item)=> {return <option key={item.index}> {item} </option>})}
-                  </select>
-                  <h5>FAITH</h5>
-                  <select >
-                    <option></option>
-                    {faith.map((item) => {return <option key={item.index}> {item} </option>})}
-                  </select>
-                  <h5>COUNTRY</h5>
-                  <select >
-                    <option></option>
-                    {country.map((item) => {return <option key={item.index}> {item} </option>})}
-                  </select>
+                <Select 
+                heading='Language' 
+                listArray={language} 
+                name='language' 
+                {...props} 
+                handleChange={props.handleChange}
+                />
+                <Select 
+                heading='ETHNICITY' 
+                listArray={ethnicity} 
+                name='ethnicity' 
+                {...props} 
+                handleChange={props.handleChange}
+                />
+                <Select 
+                heading='FAITH' 
+                listArray={faith} 
+                name='faith' 
+                {...props} 
+                handleChange={props.handleChange}
+                />
+                <Select 
+                heading='COUNTRY' 
+                listArray={country} 
+                name='country' 
+                {...props} 
+                handleChange={props.handleChange}
+                />
                 </div>                      
                 <div className="button-nav">
-                  <Button onBack={props.onBack} name="Back"/>
-                  <Button onNext={props.onNext} name="Next"/>
+                    <Button onBack={props.onBack} name="Back"/>
+                    <Button onNext={props.onNext}  name="Next"/>
                 </div>
             </div>              
         </div>

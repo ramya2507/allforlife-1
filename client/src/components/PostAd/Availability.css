@@ -1,0 +1,26 @@
+.availability-image{
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+}
+
+.availability-image-1{
+  display: flex;
+  flex-direction: row;
+  padding: 2%;
+  justify-content: center;
+}
+
+.individual-image{
+  display: flex;
+  justify-content: center;
+  margin-left:20px;
+  padding:2%;
+  width:100%;
+  border: solid 0.5px gray;
+}
+
+.individual-image img{
+  align-items: center;
+
+}

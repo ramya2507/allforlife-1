@@ -1,8 +1,10 @@
-import React from 'react'
-import Timeline from './TimeLine'
+import React from 'react';
+import { useState } from 'react';
+
+import "./Details.css";
+import Select from "./Select";
 import Button from './Button'
-
-
+import Timeline from './TimeLine'
 
 const symptomes=["Addiction", "Adoption","Anxiety",
 "Alchol Use","depression", "Chronic illness", "Divorce",
@@ -12,15 +14,30 @@ const symptomes=["Addiction", "Adoption","Anxiety",
  "Attachment-based", "Biofeedback", "Coaching"];
  const insurrance=["1199SEIU","ACI Specialty Benefits", "AMERIGROUP"];
  const age=["Adolescents/ Teenagers (14 to 19)", "Adults", "children (6 to 10)", "Elders(65+)"]
+ const sexuality=['Bisexual','Gay','Lisbian'];
 
 export default function Details(props) {
 
+    
+    function checkSymptoms(evt){
+        const newSymptomes=[...props.symptomes];
+        if(evt.target.checked){
+            const find=newSymptomes.find(symptome =>  symptome === evt.target.name);
+            if(!find){
+                newSymptomes.push(evt.target.name);
+                props.addSymptomes( newSymptomes);
+            }
+        } else {
+            const arr = newSymptomes.filter(symptome => symptome !== evt.target.name);
+            props.addSymptomes( arr);
+        }
+    }
+        
+
     return(
         <div className="post-description-container">
-            <Timeline />
     
-                <div className="post-description-progress2">
-                </div>
+                <Timeline  width={props.timeline}/>
                 <div className="post-description-progress1">
                    <span>Step 3/6</span> 
                 </div>
@@ -32,41 +49,25 @@ export default function Details(props) {
                     <br/>
                     <div className="container-symptomes">
                     {symptomes.map((item,index) => {return (
-                        <div key={item.index} className="symptomes">
-                        <button>{item}</button>
-                        </div>
+                            <label key={index} className="container-symptomes-1">
+                            <span className="symptomes-text" >{item}</span>
+                            <input type="checkbox" name={item} value={item} onClick={(evt)=>checkSymptoms(evt)} />
+                            <span className="checkmark"></span>
+                            </label>
+
                     )})}
                       
                     </div>
                     <div className="details-others">
-                        <h5>TYPE OF THERAPY: </h5>
-                        <select >
-                        <option></option>
-                            {therapy.map((item,index) => {return <option key={item.index}> {item} </option>})}
-                        </select>
-                        <h5>ISSURANCE: </h5>
-                        <select >
-                        <option></option>
-                            {insurrance.map((item,index)=> {return <option key={item.index}> {item} </option>})}
-                        </select>
-                        <h5>AGE: </h5>
-                        <option></option>
-                        <select >
-                            {age.map((item,index) => {return <option key={item.index}> {item} </option>})}
-                        </select>
-                        <h5>SEXUALITY: </h5>
-                        
-                        <select >
-                            <option></option>
-                            <option>Bisexual</option>
-                            <option>Gay</option>
-                            <option>Lisbian</option>
-                        </select>
+                        <Select heading='TYPE OF THERAPY:' listArray={therapy} name='therapy' filter={props.therapy} {...props} handleChange={props.handleChange}/>
+                        <Select heading='ISSURANCE:' listArray={insurrance} name='insurance'filter={props.insurance}{...props} handleChange={props.handleChange} />
+                        <Select heading='AGE:' listArray={age} {...props} name='age' filter={props.age} {...props} handleChange={props.handleChange} />
+                        <Select heading='SEXUALITY' listArray={sexuality} name='sexuality'filter={props.sexuality} {...props} handleChange={props.handleChange}/>                       
                     </div>                      
                     <div className="button-nav">
-                        <Button onBack={props.onBack} name="Back"/>
-                        <Button onNext={props.onNext} name="Next"/>
-                    </div>     
+                    <Button onBack={props.onBack} name="Back"/>
+                    <Button onNext={props.onNext}  name="Next"/>
+                </div>     
                
                 </div>
         </div>

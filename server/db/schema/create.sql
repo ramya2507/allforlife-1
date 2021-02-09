@@ -41,7 +41,7 @@ CREATE TABLE job_postings(
     timeRequirement VARCHAR(255),
     availabilityFrom VARCHAR(255),
     availabilityTo VARCHAR(255),
-    postCreationTime TIMESTAMPTZ
+    postCreationTime CURRENT_TIMESTAMP(2);
 )
 
 DROP TABLE IF EXISTS symptomes CASCADE;

@@ -6,8 +6,14 @@ export default function Time(props){
 
   return (
     <div className="individual-image">
+      <div className="image-input">
       <input type="radio"  name="timeRequirement" value={imageName} onChange={props.handleChange} />
       <img src={`./image/${imageName}.png`} alt={alt}></img>
+      </div>
+      <div className="individual-image-title">
+      <h3>{props.alt}</h3>
+      </div>
+      
     </div>
   );
 

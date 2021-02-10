@@ -35,6 +35,8 @@
 }
 .review-availability img{
   border: solid 1px rgb(212, 211, 211);
+  height:150px;
+  margin-left: 40px;
 
 }
 .review-availability-freq{

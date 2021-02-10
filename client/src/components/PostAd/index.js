@@ -37,6 +37,7 @@ export default function PostAd(props){
     therapy:'',
     insurance:'', 
     age:'' ,
+    timeZones: '',
     sexuality:'',
     language:'',
     ethnicity:'',

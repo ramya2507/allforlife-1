@@ -27,6 +27,7 @@ export default function Budget(props) {
                     <Select 
                        listArray={typeOfPayment} 
                         name='typeOfPayment'
+                        filter={props.typeOfPayment}
                         {...props} 
                         handleChange={props.handleChange}
                     />

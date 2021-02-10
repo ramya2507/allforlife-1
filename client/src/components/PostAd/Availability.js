@@ -4,6 +4,7 @@ import Select from './Select';
 import Button from './Button'
 import Timeline from './TimeLine'
 
+const timeZones = ['Atlantic Standard Time (AST)', 'Eastern Standard Time (EST)', 'Central Standard Time (CST)', 'Mountain Standard Time (MST)','Pacific Standard Time (PST)', 'Alaskan Standard Time (AKST)', 'Hawaii-Aleutian Standard Time (HST)', 'Samoa standard time (UTC-11)', 'Chamorro Standard Time (UTC+10'];
 const appointmentFrequency=['Daily','Once a week','Twice a week','Thrice a week','Monthly'];
 
 export default function Availability(props) {
@@ -25,6 +26,7 @@ export default function Availability(props) {
                     <Select 
                        listArray={appointmentFrequency} 
                        name='appointmentFrequency' 
+                       filter={props.appointmentFrequency}
                        {...props} 
                        handleChange={props.handleChange}
                     />
@@ -33,13 +35,12 @@ export default function Availability(props) {
                     <h5 className="budget-h5">Do you have any time requirement?</h5>
                     <div className="availability-image">
                         <div className="availability-image-1">
-                            <Time imageName='morning' alt='morning' {...props} handleChange={props.handleChange}/>
-                            <Time imageName='afternoon' alt='afternoon'{...props} handleChange={props.handleChange}/>
+                            <Time imageName='morning' alt='Morning' {...props} handleChange={props.handleChange}/>
+                            <Time imageName='afternoon' alt='Afternoon'{...props} handleChange={props.handleChange}/>
                         </div>
                         <div className="availability-image-1">
-                            <div className="availability-evenging">
-                              <Time imageName='evening' alt='evening' {...props} handleChange={props.handleChange} />
-                            </div>     
+                            <Time imageName='evening' alt='Evening' {...props} handleChange={props.handleChange}/>
+                            <Time imageName='night' alt='Night'{...props} handleChange={props.handleChange}/>
                         </div>
                                                 
                         </div>
@@ -49,6 +50,13 @@ export default function Availability(props) {
                       <input type="text"  name="availabilityFrom" value={props.availabilityFrom} onChange={props.handleChange}></input>
                       <label for="totime">To</label>
                       <input type="text" name="availabilityTo" value={props.availabilityTo} onChange={props.handleChange}></input>
+                    <Select
+                        listArray={timeZones} 
+                        name='timeZones' 
+                        filter={props.timeZones}
+                        {...props} 
+                        handleChange={props.handleChange}
+                    />
                     </div>
                 </div>
                 </div>

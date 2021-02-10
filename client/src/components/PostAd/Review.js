@@ -1,5 +1,6 @@
 import Button from './Button'
 import Timeline from './TimeLine'
+import Time from './Time';
 import "./Review.css";
 
 export default function Review(props) {

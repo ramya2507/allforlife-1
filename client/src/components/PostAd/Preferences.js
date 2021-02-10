@@ -32,6 +32,7 @@ export default function Preferences(props) {
                 heading='Language' 
                 listArray={language} 
                 name='language' 
+                filter={props.language}
                 {...props} 
                 handleChange={props.handleChange}
                 />
@@ -39,6 +40,7 @@ export default function Preferences(props) {
                 heading='ETHNICITY' 
                 listArray={ethnicity} 
                 name='ethnicity' 
+                filter={props.ethnicity}
                 {...props} 
                 handleChange={props.handleChange}
                 />
@@ -46,6 +48,7 @@ export default function Preferences(props) {
                 heading='FAITH' 
                 listArray={faith} 
                 name='faith' 
+                filter={props.faith}
                 {...props} 
                 handleChange={props.handleChange}
                 />
@@ -53,6 +56,7 @@ export default function Preferences(props) {
                 heading='COUNTRY' 
                 listArray={country} 
                 name='country' 
+                filter={props.country}
                 {...props} 
                 handleChange={props.handleChange}
                 />

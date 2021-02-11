@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-const PORT = 3001;
+const PORT = 8010;
 const db = require("./db/dbIndex");
+const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 
 // routes constants
@@ -13,6 +14,21 @@ const jobPost = require("./routes/jobPost");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Headers', '*');
+  next();
+});
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
 
 //routes
 app.use("/api/users", users(db));

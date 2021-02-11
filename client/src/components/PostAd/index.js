@@ -64,7 +64,12 @@ function handleNextClick(mode) {
 function handleBackClick(mode) {
   console.log(state)
   back(mode)
-  setTimeline(prev => prev - 140)
+  setTimeline(prev => {
+    if(prev > 0){
+      return prev - 140
+    }
+    return 0
+  })
 
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Register.css"
+import { Redirect } from "react-router-dom";
 
 export default function Register(props) {
 
@@ -36,7 +37,7 @@ export default function Register(props) {
             }
             axios.post(`http://localhost:8010/api/register`,user).then(res =>{
                 if(res.data.length <= 0){
-                    setError("Could not create user this email already exists!")
+                    setError("Could not create user this username already exists!")
                     } else {
                         console.log(res.data);
                         setError("");
@@ -48,7 +49,7 @@ export default function Register(props) {
         } 
     }
 
-    return (
+    return !loggedIn ? (
         <div className="register-container">
             <div className="register">
                 <form className="register-form" onSubmit={event => event.preventDefault()} >
@@ -78,7 +79,7 @@ export default function Register(props) {
                 </form>
             </div>       
         </div>
-    )
+    ):<Redirect to='/'></Redirect>;
     
 }
 

@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect} from "react";
 import axios from "axios";
 import "./Login.css";
+import { Redirect } from "react-router-dom";
 
 
 export default function Login(props) {
@@ -36,7 +37,7 @@ export default function Login(props) {
         }
     }
 
-    return (
+    return !loggedIn ?(
         <div className="login-container">
             <div className="login">  
                 <form className="login-form" onSubmit={event => event.preventDefault()} >
@@ -53,6 +54,5 @@ export default function Login(props) {
                 </form>
             </div>
         </div>
-    )
-    
+    ): <Redirect to='/'></Redirect>;
 }

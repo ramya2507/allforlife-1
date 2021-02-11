@@ -1,29 +1,41 @@
-import React from 'react';
-import './Landing.css'
 
-import UserType from "./UserType"
-import Button from "./Button"
+import "./Landing.css"
+import Button from './Button'
 
-export default function JobPost(props) {
-  return (
-    <section className="page-section portfolio" id="portfolio">
-            <div className="container">
-                <h3 className="page-section-heading text-center text-uppercase text-secondary mb-0">Who needs help?</h3>
-                <div className="divider-custom"></div>
-                <div className="row justify-content-center">
-                  
-                  <UserType type="Myself" img="user"message="I am looking for professional help for myself"/>
-                  <UserType type="Loved One" img="user2"message="I am looking for professional help for a loved one"/>
+export default function Landing(props) {
+
+    return(
+        <div className="landing-container">
+                <div className="landing-container-box">
+                  <h2>Create a new post</h2> 
+                  <div className="landing-separation"></div> 
+                  <div className="landing"> 
+                      <h3>Who need help ?</h3>
+                      <div className="landing-for">
+                        <div className="myself">
+                            <input type="radio"  name="appointmentFor" value="mySelf" onChange={props.handleChange} />
+                            <div className="myself-desc">
+                                <img src={`./image/mySelf.png`} alt="mySelf"></img>
+                                <div className="myself-title">Myself</div>
+                                <span className="myself-text">I am looking professional help for myself</span>
+                            </div>
+                        </div>
+                        <div className="loved-one">
+                            <input type="radio"  name="appointmentFor" value="lovedOne" onChange={props.handleChange} />
+                            <div className="myself-desc">
+                                <img src={`./image/lovedOne.png`} alt="lovedOne"></img>
+                                <div className="myself-title">Loved One</div>
+                                <span className="myself-text">I am looking professional help for someone else</span>
+                                </div>
+                            </div>
+                        </div>
+                      <div className ="start-btn">
+                      <Button onNext={props.onNext}  name="Next"/>
+                      </div>
+                  </div>
+                 
                 </div>
-                <div className="button">
-                <Button onNext={props.onNext}  name="Start"/>
-                </div>
-                
-                
-                
-                
             </div>
-        </section>
-  )
+    
+    )
 }
-

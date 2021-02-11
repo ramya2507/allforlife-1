@@ -20,6 +20,7 @@ export default function Details(props) {
 
     
     function checkSymptoms(evt){
+        
         const newSymptomes=[...props.symptomes];
         if(evt.target.checked){
             const find=newSymptomes.find(symptome =>  symptome === evt.target.name);
@@ -51,7 +52,7 @@ export default function Details(props) {
                     {symptomes.map((item,index) => {return (
                             <label key={index} className="container-symptomes-1">
                             <span className="symptomes-text" >{item}</span>
-                            <input type="checkbox" name={item} value={item} onClick={(evt)=>checkSymptoms(evt)} />
+                            <input type="checkbox" name={item} value={item} checked={props.symptomes.find(symptome => symptome === item)? "checked" : ""} onClick={(evt)=>checkSymptoms(evt)} />
                             <span className="checkmark"></span>
                             </label>
 

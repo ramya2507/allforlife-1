@@ -7,24 +7,6 @@ const { getUserWithEmail, addUser } = require('../util/customerHelpers');
 //api routes
 
 module.exports = (db) => {
-  
-  router.get('/', async(req, res) => {
-    try {
-      const allUsers = await db.query(`SELECT * FROM customers`);
-      res.json(allUsers.rows);
-    } catch (e) {
-      console.log(e.message);
-    }
-  });
-  
-  router.get('/:id', (req, res) => {
-    const user = users.find(u => u.id === parseInt(req.params.id));
-    if (!user) {
-      res.status(404).send("this user does not exist");
-    }
-    res.send(user);
-  });
-  
   //registration route
   router.post('/register', (req, res) => {
     const { prefix, firstName, lastName, email, password } = req.body;
@@ -48,10 +30,9 @@ module.exports = (db) => {
           return;
         }
         addUser(userData, db).then(newUser => {
-          //console.log(newUser);
-          //cookies.........
-          // req.session['userID'] = newUser['id'];
-          res.send({message: "registered new user" });
+          req.session.customerId = newUser.id;
+          console.log(req.session.customerId);
+          res.json(newUser);
           return;
         })
           .catch(e => res.send("error"));
@@ -73,8 +54,9 @@ module.exports = (db) => {
           res.send("Password is incorrect");
           return;
         }
-        res.send("found you");
-        //cookies session.................
+        req.session.customerId = user.id;
+        //console.log(req.session.customerId);
+        res.json(user);
       })
       .catch(e => {
         if (e) {

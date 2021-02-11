@@ -9,7 +9,7 @@ import Review from "./Review";
 import Landing from "./Landing"
 
 //helper filer
-import useVisualMode from '../hooks/useVisualMode'
+import useVisualMode from '../../hooks/useVisualMode'
 
 //DECLEARING CONSTANTS
 const LANDING = "LANDING";
@@ -27,7 +27,7 @@ const REVIEW = "REVIEW";
 //PostAd component
 export default function PostAd(props){
   /*  hooks  */
-  const {mode, transition, back} = useVisualMode(DESCRIPTION)
+  const {mode, transition, back} = useVisualMode(LANDING)
   const [timeline, setTimeline] = useState(0)
 
   const [state, setState]=useState({
@@ -76,9 +76,11 @@ function addSymptomes(newSymptomes) {
   setState({...state, symptomes :newSymptomes})
 }
 
-function post() {
- }
+//function submit jobpost
 
+function post(jobPostData) {
+        
+}
 /* local functions end */
 
   return(

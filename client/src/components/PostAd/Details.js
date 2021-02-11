@@ -14,7 +14,7 @@ const symptomes=["Addiction", "Adoption","Anxiety",
  "Attachment-based", "Biofeedback", "Coaching"];
  const insurrance=["1199SEIU","ACI Specialty Benefits", "AMERIGROUP"];
  const age=["Adolescents/ Teenagers (14 to 19)", "Adults", "children (6 to 10)", "Elders(65+)"]
- const sexuality=['Bisexual','Gay','Lisbian'];
+ const sexuality=['Bisexual','Gay','Lesbian'];
 
 export default function Details(props) {
 

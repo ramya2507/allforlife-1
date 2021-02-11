@@ -3,7 +3,7 @@ import "./ProblemDescription.css"
 import Button from './Button'
 import Timeline from './TimeLine'
 
-import useTimeLine from '../hooks/useTimeLine';
+import useTimeLine from '../../hooks/useTimeLine';
 
 
 export default function PostDescription(props) {

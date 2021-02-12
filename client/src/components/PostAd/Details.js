@@ -1,10 +1,13 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios'
 
 import "./Details.css";
 import Select from "./Select";
 import Button from './Button'
 import Timeline from './TimeLine'
+
+
 
 const symptomes=["Addiction", "Adoption","Anxiety",
 "Alchol Use","depression", "Chronic illness", "Divorce",
@@ -17,16 +20,30 @@ const symptomes=["Addiction", "Adoption","Anxiety",
  const sexuality=['Bisexual','Gay','Lesbian'];
 
 export default function Details(props) {
-
+    const [symptomes, setSymptomes] = useState([]);
+    //fetch symptomes from database
+    useEffect(() => {
+        axios.get("http://localhost:8010/api/jobpost/symptomes")
+            .then(res => {
+                console.log(res, "res")
+                setSymptomes(res.data)
+            })
+    }, [])
     
     function checkSymptoms(evt){
-        
-        const newSymptomes=[...props.symptomes];
+     const newSymptomes=[...props.symptomes];
+     const newSymptomesId = [...props.symptomesId]
         if(evt.target.checked){
-            const find=newSymptomes.find(symptome =>  symptome === evt.target.name);
-            if(!find){
+            const find =newSymptomes.find(symptome =>  symptome === evt.target.name);
+            const findId =newSymptomesId.find(symptomeId =>  symptomeId === evt.target.id);
+            
+
+            if(!find&&!findId){
                 newSymptomes.push(evt.target.name);
-                props.addSymptomes( newSymptomes);
+                newSymptomesId.push(evt.target.id);
+
+                props.addSymptomes( newSymptomes, newSymptomesId);
+                //props.addSymptomes( newSymptomesId);
             }
         } else {
             const arr = newSymptomes.filter(symptome => symptome !== evt.target.name);
@@ -51,8 +68,8 @@ export default function Details(props) {
                     <div className="container-symptomes">
                     {symptomes.map((item,index) => {return (
                             <label key={index} className="container-symptomes-1">
-                            <span className="symptomes-text" >{item}</span>
-                            <input type="checkbox" name={item} value={item} checked={props.symptomes.find(symptome => symptome === item)? "checked" : ""} onClick={(evt)=>checkSymptoms(evt)} />
+                            <span className="symptomes-text" >{item.name}</span>
+                            <input type="checkbox" name={item.name} id={item.id} value={item.name} checked={props.symptomes.find(symptome => symptome === item.name)? "checked" : ""} onClick={(evt)=>checkSymptoms(evt)} />
                             <span className="checkmark"></span>
                             </label>
 

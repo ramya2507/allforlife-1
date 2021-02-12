@@ -17,13 +17,13 @@ CREATE TABLE customers(
 ​
 CREATE TABLE providers(
     id SERIAL PRIMARY KEY NOT NULL,
-    prefix VARCHAR(10),
+    prefix VARCHAR(10) DEFAULT NULL,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     userName VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    degree VARCHAR(255),
+    degree VARCHAR(255) DEFAULT NULL,
     aboutMe TEXT DEFAULT NULL,
     therapy VARCHAR(255) DEFAULT NULL,
     age VARCHAR(255) DEFAULT NULL,

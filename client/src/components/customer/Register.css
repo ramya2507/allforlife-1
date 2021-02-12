@@ -1,3 +1,12 @@
+body {
+   
+  margin:0px;
+  font-family: 'Ubuntu', sans-serif;
+    background-size: 100% 100%;
+}
+h1, h2, h3, h4, h5, h6, a {
+  margin:0; padding:0;
+}
 .register {
   margin:50px 70px;
   max-width:500px;
@@ -5,17 +14,14 @@
 
 
 .register-container{
-  border: solid 2px white;
-  background-image: url('../../images/woman_big-min.png');
+  border: solid 2px black;
+  background-image: url('woman_big-min.png');
   background-size: cover;
   width: 100%;
 
 }
 
-.alert-error {
-  color :red;
-  margin-top: 10px;
-}
+
 
 .register-form {
   border:.5px solid rgb(119, 117, 117);
@@ -66,6 +72,11 @@
 }
 .register-form input[type="submit"]:hover {
   border:2px solid black;
+}
+
+.alert-error{
+  margin-top: 10px;
+  color: red;
 }
 
 

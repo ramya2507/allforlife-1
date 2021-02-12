@@ -1,5 +1,5 @@
 import  React, { useState, } from "react";
-
+import axios from 'axios'
 import Details from "./Details";
 import ProblemDescription from "./ProblemDescription";
 import Preferences from "./Preferences";
@@ -21,11 +21,10 @@ const AVAILABILITY = "AVAILABILITY";
 const REVIEW = "REVIEW";
 
 
-
-
-
 //PostAd component
 export default function PostAd(props){
+
+  console.log(props)
   /*  hooks  */
   const {mode, transition, back} = useVisualMode(LANDING)
   const [timeline, setTimeline] = useState(0)
@@ -33,7 +32,8 @@ export default function PostAd(props){
   const [state, setState]=useState({
     appointmentFor:'',
     description:'',
-    symptomes: [],
+    symptomesId: [],
+    symptomes:[],
     therapy:'',
     insurance:'', 
     age:'' ,
@@ -77,14 +77,24 @@ const handleChange = (event) => {
   const { name, value } = event.target
   setState({ ...state, [name]: value })
 } 
-function addSymptomes(newSymptomes) {
-  setState({...state, symptomes :newSymptomes})
+function addSymptomes(newSymptomes, id) {
+  setState({...state, symptomes :newSymptomes, symptomesId: id})
+
 }
 
 //function submit jobpost
 
-function post(jobPostData) {
-        
+function post() {
+  console.log(state)
+  const jobPostObj = {
+    ...state,
+    customerId: props.user.id
+  }
+  console.log(jobPostObj, "jobpost")
+
+  const response = axios.post('http://localhost:8010/api/jobpost', {jobPostData: jobPostObj}).then(res => {console.log(res,"response")}).catch(e=>console.log(e,"error"))
+
+  return response;
 }
 /* local functions end */
 
@@ -96,7 +106,7 @@ function post(jobPostData) {
     { mode === "PREFERENCES" && <Preferences {...state} handleChange={handleChange} timeline={timeline} onBack={() =>handleBackClick(DETAILS)} onNext={() =>handleNextClick(BUDGET)}/> } 
     { mode === "BUDGET" && <Budget {...state} handleChange={handleChange} timeline={timeline} onBack={() =>handleBackClick(PREFERENCES)} onNext={() =>handleNextClick(AVAILABILITY)}/> } 
     { mode === "AVAILABILITY" && <Availability {...state} handleChange={handleChange} timeline={timeline} onBack={() =>handleBackClick(BUDGET)} onNext={() =>handleNextClick(REVIEW)}/> } 
-    { mode === "REVIEW" && <Review {...state} handleChange={handleChange} timeline={timeline} onBack={() =>handleBackClick(AVAILABILITY)} OnPost={post}/> } 
+    { mode === "REVIEW" && <Review {...state} handleChange={handleChange} timeline={timeline} onBack={() =>handleBackClick(AVAILABILITY)} onPost={() => post()}/> } 
     
     </>  )
 }

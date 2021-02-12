@@ -30,8 +30,9 @@ app.use(cookieSession({
   keys: ['key1', 'key2']
 }));
 
+
 //routes
-app.use("/api/users", users(db));
+app.use("/api", users(db));
 app.use("/api/jobpost", jobPost(db));
 
 

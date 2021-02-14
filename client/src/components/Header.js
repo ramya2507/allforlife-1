@@ -13,7 +13,7 @@ export default function Header(props) {
     return (
       <nav className="nav-container">
           <div className="nav-div-image">
-            <img src="./image/logo.png" />
+            <img src="./image/logo.png" alt="logo" />
           </div>
          {!user && <div className="nav-links">
             <Link to="/login" className="nav-link-id">Login</Link> 

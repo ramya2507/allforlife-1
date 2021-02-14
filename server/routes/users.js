@@ -3,8 +3,8 @@ const bcrypt = require('bcryptjs');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 
-const { getUserWithUserName, addUser, checksession } = require('../util/customerHelpers');
-const { requireAuth } = require("../middleware/authMiddleWare");
+const { getUserWithUserName, addUser } = require('../util/customerHelpers');
+
 //api routes
 
 module.exports = (db) => {
@@ -12,7 +12,6 @@ module.exports = (db) => {
   router.post('/register', async(req, res) => {
     const { prefix, firstName, lastName, userName, email } = req.body;
     let { password } = req.body;
-    //const hashedPassword = bcrypt.hashSync(password, 12);
     const salt = await bcrypt.genSalt(12);
     password = await bcrypt.hash(password, salt);
     if (!firstName || !lastName || !userName || !email || !password) {
@@ -36,8 +35,7 @@ module.exports = (db) => {
           const payload = {
             user: {
               id: newUser.id,
-              userName: newUser.username,
-              auth: requireAuth
+              userName: newUser.username
             }
           };
           //res.json(payload);
@@ -52,17 +50,12 @@ module.exports = (db) => {
               res.json({token});
             }
           );
-
-          // req.session.customerId = newUser.id;
-          // req.session.customerId = newUser .id;
-          // res.json(newUser);
-          // return;
         })
           .catch(e => res.send("error"));
           
       })
       .catch(e => {
-        //res.status(500).json({ error: e.message});
+        res.status(500).json({ error: e.message});
       });
   });
   
@@ -73,18 +66,14 @@ module.exports = (db) => {
       .then(loggedUser => {
         if (!loggedUser) {
           res.status(400).json({message:"Username does not exit"});
-
         } else if (!bcrypt.compareSync(password, loggedUser['password'])) {
           res.status(400).json({message:"Password is incorrect"});
-          return;
         }
-
         //payload
         const payload = {
           user: {
             id: loggedUser.id,
-            userName: loggedUser.username,
-            auth: requireAuth
+            userName: loggedUser.username
           }
         };
         //sending tokens

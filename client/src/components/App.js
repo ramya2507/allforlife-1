@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from './Header';
 import Footer from './Footer';
-
 import Login from './customer/Login';
 import Register from './customer/Register';
 import PostAd from './PostAd';
@@ -12,6 +11,7 @@ import RegisterDecision from './RegisterDecision';
 import ProviderLogin from './provider/ProviderLogin';
 import ProviderRegister from './provider/ProviderRegister';
 import { decodeUser } from '../util/index';
+import Home from './Home';
 
 const userFromStorage = decodeUser();
 
@@ -42,7 +42,10 @@ function App() {
           {!loggeduser && <LoginDecision setUser={setUser} />}
         </Route>
         <Route path="/" exact>
-          <PostAd  user={loggeduser}/>
+          <Home user={loggeduser}/>
+        </Route>
+        <Route path="/postAd">
+         <PostAd  user={loggeduser}/>
         </Route>
       </Switch>
       <Footer />

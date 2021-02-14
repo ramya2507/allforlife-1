@@ -2,7 +2,6 @@ import React from 'react';
 
 
 export default function Select(props){
-  console.log(props, "props here")
   const { heading,listArray,name} = props;
   return(
     <>

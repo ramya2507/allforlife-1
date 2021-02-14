@@ -1,6 +1,7 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
 const { getProviderWithUserName, addProvider } = require('../util/providerHelpers');
 
@@ -26,46 +27,49 @@ module.exports = (db) => {
   });
   
   //registration route
-  router.post('/register', (req, res) => {
-    const { prefix, firstName, lastName, userName, email, password, degree, aboutMe, therapy, age, ethnicity, location, profile_photo_url } = req.body;
-    const hashedPassword = bcrypt.hashSync(password, 12);
+  router.post('/register', async (req, res) => {
+    const { prefix, firstName, lastName, userName, email, degree, aboutMe, therapy, age, ethnicity, location, profile_photo_url } = req.body;
+    const salt = await bcrypt.genSalt(12);
+    let { password } = req.body;
+    password = await bcrypt.hash(password, salt);
   
     if (!firstName || !lastName ||!userName ||!email || !password) {
-      res.send("You are missing a field");
+      res.send(400).json({ message : "You are missing a field" });
       return;
     }
-    const providerData = {
-      prefix: prefix,
-      firstName: firstName,
-      lastName:lastName,
-      userName:userName,
-      email:email,
-      password: hashedPassword,
-      degree:degree,
-      aboutMe:aboutMe,
-      therapy:therapy,
-      age:age,
-      ethnicity:ethnicity,
-      location:location,
-      profile_photo_url:profile_photo_url
-    };
+    const providerData = { prefix,firstName,lastName,userName,email,password,degree,aboutMe,therapy,age,ethnicity,location,profile_photo_url };
     getProviderWithUserName(userName, db)
       .then(response => {
         if (response) {
-          res.json([]);
-          return;
+          res.sendStatus(400).json({message:"User already exists"});
         }
         addProvider(providerData, db).then(newUser => {
-          req.session.ProviderId = newUser.id;
-          console.log(req.session.ProviderId, "user");
-          res.json(newUser);
-          return;
+          const payload ={
+            user:{
+              id:newUser.id,
+              userName:newUser.username
+            }
+          };
+
+          //jwt token
+          jwt.sign(
+            payload,
+            "allforlife",
+            {expiresIn: 3600 * 24 },
+            (err, token) => {
+              if(err){
+                throw err;
+              } else {
+                res.json({token});
+              }
+            }
+          )
         })
           .catch(e => res.send("error"));
           
       })
       .catch(e => {
-        //res.status(500).json({ error: e.message});
+        res.status(500).json({ error: e.message});
       });
   });
   
@@ -75,14 +79,29 @@ module.exports = (db) => {
     getProviderWithUserName(userName, db)
       .then(user => {
         if (!user) {
-          res.json([]);
+          res.status(400).json({message:"User doesn't exist!"});
         } else if (!bcrypt.compareSync(password, user['password'])) {
-          res.json([]);
-          return;
+          res.status(400).json({message:"Password is incorrect. Try Again!"});
+        } else {
+          const payload ={
+            user:{
+              id:user.id,
+              userName:user.username
+            }
+          };
+          jwt.sign(
+            payload,
+            "allforlife",
+            {expiresIn: 3600 * 24 },
+            (err, token) => {
+              if(err){
+                throw err;
+              } else {
+                res.json({token});
+              }
+            }
+          )
         }
-        req.session.providerId = user.id;
-        console.log(req.session.providerId);
-        res.json(user);
       })
       .catch(e => {
         if (e) {

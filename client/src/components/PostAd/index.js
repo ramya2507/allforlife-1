@@ -24,7 +24,6 @@ const REVIEW = "REVIEW";
 //PostAd component
 export default function PostAd(props){
 
-  console.log(props)
   /*  hooks  */
   const {mode, transition, back} = useVisualMode(LANDING)
   const [timeline, setTimeline] = useState(0)

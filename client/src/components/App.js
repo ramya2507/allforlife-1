@@ -9,34 +9,40 @@ import Register from './customer/Register';
 import PostAd from './PostAd';
 import LoginDecision from './LoginDecision';
 import RegisterDecision from './RegisterDecision';
+import ProviderLogin from './provider/ProviderLogin';
+import ProviderRegister from './provider/ProviderRegister';
+import { decodeUser } from '../util/index';
 
-/*  <>
-   <Header />
-   {!user && <Register setUser={setUser}/>}
-   {user && <h1>Hi {user.username} !</h1>}
-   </> */
+const userFromStorage = decodeUser();
 
 function App() {
-  const [user,setUser]= useState(null);
+  
+  const [loggeduser,setUser]= useState(userFromStorage);
 
   return (
     <Router>
-      <Header user={user} setUser={setUser}/>
+      <Header user={loggeduser} setUser={setUser}/>
       <Switch>
+        <Route path="/providerlogin" exact>
+         <ProviderLogin setUser={setUser} /> 
+        </Route>
+        <Route path="/providerregister" exact>
+          <ProviderRegister user={loggeduser} setUser={setUser} />
+        </Route>
         <Route path="/customerlogin">
           <Login setUser={setUser} /> 
         </Route>
         <Route path="/customerregister">
           <Register setUser={setUser} />
         </Route>
-        <Route path="/register">
-          {!user && <RegisterDecision setUser={setUser} />}
+        <Route path="/register" exact>
+          {!loggeduser && <RegisterDecision setUser={setUser} />}
         </Route>
-        <Route path="/login">
-          {!user && <LoginDecision setUser={setUser} />}
+        <Route path="/login" exact>
+          {!loggeduser && <LoginDecision setUser={setUser} />}
         </Route>
         <Route path="/" exact>
-          <PostAd  user={user}/>
+          <PostAd  user={loggeduser}/>
         </Route>
       </Switch>
       <Footer />

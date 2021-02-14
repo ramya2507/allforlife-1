@@ -53,4 +53,3 @@ alter table job_postings alter column postCreationTimeZone set DEFAULT NULL;
 
 
 
-

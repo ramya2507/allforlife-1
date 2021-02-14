@@ -32,7 +32,10 @@ export default function ProviderLogin(props) {
                     props.setUser(providerData.user);
                     setLoggedIn(true);
                 }
-            });      
+            })
+            .catch(err =>{
+                setError("User doesn't exist or password is incorrect");
+            })   
         }
     }
 

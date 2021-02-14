@@ -69,12 +69,13 @@ export default function Register(props) {
                     setError("");
                     props.setUser(providerData.user);
                     setLoggedIn(true);
+                } else {
+                    setError("User exists!");
                 }
                 
              })
              .catch(err => {
-                 console.log(`I am error ${err}`)
-                 setError(err.message);
+                setError("User exists!");
              })
 
         } 

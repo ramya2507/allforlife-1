@@ -14,8 +14,6 @@ export default function Login(props) {
     });
     const [error, setError] = useState("");
 
-    const [loggedIn, setLoggedIn] = useState(false)
-
     const handleChange = (event) => {
         const { name, value } = event.target
         setFormValues({ ...formValues, [name]: value })
@@ -32,7 +30,7 @@ export default function Login(props) {
                     const providerData = decodeUser();
                     setError("");
                     props.setUser(providerData.user);
-                    setLoggedIn(true);
+                    props.setLoggedIn(true);
                 }
             })
             .catch(err => {
@@ -41,7 +39,7 @@ export default function Login(props) {
         }
     }
 
-    return !loggedIn ?(
+    return !props.loggedIn ?(
         <div className="login-container">
             <div className="login">  
                 <form className="login-form" onSubmit={event => event.preventDefault()} >

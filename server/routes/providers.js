@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 
-const { getProviderWithUserName, addProvider } = require('../util/providerHelpers');
+const { getProviderWithUserName, addProvider, checkId } = require('../util/providerHelpers');
 
 //api routes for providers
 
@@ -18,12 +18,27 @@ module.exports = (db) => {
     }
   });
   
+
+  //route to check if provider exists
   router.get('/:id', (req, res) => {
-    const provider = providers.find(u => u.id === parseInt(req.params.id));
-    if (!provider) {
-      res.status(404).send("this user does not exist");
+    const id = req.params.id;
+    if(!id){
+      res.status(400).json({message:"Login as a provider to apply"});
     }
-    res.send(provider);
+    checkId(id,db)
+    .then(res => {
+      if(res){
+        res.status(200).json({message:"Verified Provider"});
+      } else {
+        res.status(400).json({message:"Login as a provider to apply"});
+      }
+    })
+    .catch(e => console.log(e));
+    /*const provider = providers.find(u => u.id === parseInt(req.params.id));
+    if (!provider) {
+      res.status(404).send("Login as a provider");
+    }
+    res.send(provider);*/
   });
   
   //registration route
@@ -34,7 +49,7 @@ module.exports = (db) => {
     password = await bcrypt.hash(password, salt);
   
     if (!firstName || !lastName ||!userName ||!email || !password) {
-      res.send(400).json({ message : "You are missing a field" });
+      res.sendStatus(400).json({ message : "You are missing a field" });
       return;
     }
     const providerData = { prefix,firstName,lastName,userName,email,password,degree,aboutMe,therapy,age,ethnicity,location,profile_photo_url };
@@ -69,7 +84,8 @@ module.exports = (db) => {
           
       })
       .catch(e => {
-        res.status(500).json({ error: e.message});
+        console.log(e);
+        //res.status(500).json({ error: e.message});
       });
   });
   

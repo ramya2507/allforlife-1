@@ -12,40 +12,44 @@ import ProviderLogin from './provider/ProviderLogin';
 import ProviderRegister from './provider/ProviderRegister';
 import { decodeUser } from '../util/index';
 import Home from './Home';
+import ProposalAd from "./ProposalAd";
+import ProposalForm from "./ProposalAd/ProposalForm";
 
 const userFromStorage = decodeUser();
 
 function App() {
   
   const [loggeduser,setUser]= useState(userFromStorage);
+  //const [loggedInCustomer, setLoggedInCustomer] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <Router>
-      <Header user={loggeduser} setUser={setUser}/>
+      <Header setLoggedIn={setLoggedIn} user={loggeduser} setUser={setUser}/>
       <Switch>
         <Route path="/providerlogin" exact>
-         <ProviderLogin setUser={setUser} /> 
+         <ProviderLogin loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} /> 
         </Route>
         <Route path="/providerregister" exact>
-          <ProviderRegister user={loggeduser} setUser={setUser} />
+          <ProviderRegister loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} />
         </Route>
         <Route path="/customerlogin">
-          <Login setUser={setUser} /> 
+          <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} /> 
         </Route>
         <Route path="/customerregister">
-          <Register setUser={setUser} />
-        </Route>
-        <Route path="/register" exact>
-          {!loggeduser && <RegisterDecision setUser={setUser} />}
-        </Route>
-        <Route path="/login" exact>
-          {!loggeduser && <LoginDecision setUser={setUser} />}
+          <Register loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} />
         </Route>
         <Route path="/" exact>
           <Home user={loggeduser}/>
         </Route>
         <Route path="/postAd">
          <PostAd  user={loggeduser}/>
+        </Route>
+        <Route path="/proposal">
+          <ProposalAd  setUser={setUser}/>
+        </Route>
+        <Route path="/ProposalForm/:id">
+          <ProposalForm />
         </Route>
       </Switch>
       <Footer />

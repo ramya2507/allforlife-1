@@ -28,7 +28,20 @@ const addProvider = (userData, db) => {
       return null;
     });
 };
+
+//function to check if the provider id exists in the database
+const checkId = (id, db) => {
+  return db.query(
+    `SELECT*FROM providers WHERE id=$1`,[id]
+  ).then(res => {
+    return res.rows[0];
+  })
+  .catch(e => null);
+}
+
+
 module.exports = {
   getProviderWithUserName,
-  addProvider
+  addProvider,
+  checkId
 };

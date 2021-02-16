@@ -9,6 +9,10 @@ export default function Header(props) {
     localStorage.setItem("token", "");
     setUser(undefined);
     props.setLoggedIn(false);
+    if(props.isCustomer){
+      props.setIsCustomer(false);
+      console.log("I am from logout "+ props.isCustomer);
+    }
   }
 
     return (
@@ -16,13 +20,9 @@ export default function Header(props) {
           <div className="nav-div-image">
             <img src="./image/logo.png" alt="logo" />
           </div>
-         {!user && <div className="nav-links">
-            <Link to="/login" className="nav-link-id">Login</Link> 
-            <Link to="/register" className="nav-link-id">Register</Link>
-          </div>
-          }
           {user && <div className="nav-links">
             <span className="nav-link-id"> Hi {user.userName}</span>
+            <Link to='/postAd'>PostAd</Link>
             <span className="nav-link-id" onClick={(event) => handleClick(event)}>Logout</span>
           </div>
           }

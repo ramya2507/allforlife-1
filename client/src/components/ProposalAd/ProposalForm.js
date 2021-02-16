@@ -1,8 +1,10 @@
 import "./ProposalForm.css";
 import {useEffect, useState} from "react";
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Redirect } from 'react-router-dom';
 import axios from "axios";
 import ProposalItem from "./ProposalItem";
+import Home from "../Home";
+
 
 
 
@@ -13,7 +15,7 @@ export default function ProposalForm(props){
     const [error, setError] = useState("");
 
     const [state, setState]=useState({
-        providerId :1,
+        providerId :props.user.id,
         jobPostingId :id,
         description : "",
         price : "",
@@ -40,7 +42,7 @@ export default function ProposalForm(props){
       }
 
     useEffect(()=>{
-    axios.get(`http://localhost:8007/api/jobpost/${id}`).then(res =>{
+    axios.get(`http://localhost:8010/api/jobpost/${id}`).then(res =>{
             setJobe(res.data[0]);
         });
     },[]);
@@ -48,9 +50,10 @@ export default function ProposalForm(props){
     function AddProposal(){
         if(state.description && state.price && state.availabilityDays && state.availabilityFrom &&
             state.availabilityTo){
-            axios.post(`http://localhost:8007/api/jobproposals`,state).then(res =>{
+            axios.post(`http://localhost:8010/api/jobproposals`,state).then(res =>{
                 console.log(res.data);
                 setError("");
+               
             });
         } else {
             setError("Please fill all the fields !");
@@ -68,11 +71,11 @@ export default function ProposalForm(props){
                <ProposalItem id={id} {...jobe}/>
             </div>
             <div className="proposalform-form">
-                <h3>Description <span className="yellow-icon">◣</span></h3>
+                <h3>Description <button className="yellow-icon">◣</button></h3>
                 <textarea name ="description" value={state.description} onChange={handleChange}></textarea>
-                <h3>Price (unit) <span className="yellow-icon">◣</span></h3>
+                <h3>Price (unit) <button className="yellow-icon">◣</button></h3>
                 <input type="number" name="price" value={state.price} onChange={handleChange} placeholder="$00.00"/>
-                <h3>Availability <span className="yellow-icon">◣</span></h3>
+                <h3>Availability <button className="yellow-icon">◣</button></h3>
                 <div className="form-availabilty">
                    <div className="form-availabilty-da">
                     <h5>Days :</h5>
@@ -97,7 +100,7 @@ export default function ProposalForm(props){
                     {error}
                     </div>}
                 <div className="button-send">
-                        <button onClick={() => AddProposal()}>SEND</button>
+                   <button onClick={() => AddProposal()}>SEND</button>
                 </div>
             </div> 
         </section>)}

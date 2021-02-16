@@ -18,7 +18,7 @@ export default function ProposalAd(props){
 
     // load the jobs posting from api witha specific filter
     useEffect(() => {
-      axios.get(`http://localhost:8007/api/jobpost`,{ params :{filter:filter}}).then(res =>{
+      axios.get(`http://localhost:8010/api/jobpost`,{ params :{filter:filter}}).then(res =>{
         console.log(res.data);
         setJobPostingData(res.data);
       });      
@@ -149,7 +149,7 @@ export default function ProposalAd(props){
                  })}
                  <div className="proposal-footer"></div>
           </section> 
-        </section>  
+        </section>
       
         </>  )
 }

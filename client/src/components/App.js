@@ -1,18 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Header from './Header';
 import Footer from './Footer';
 import Login from './customer/Login';
 import Register from './customer/Register';
 import PostAd from './PostAd';
-import LoginDecision from './LoginDecision';
-import RegisterDecision from './RegisterDecision';
 import ProviderLogin from './provider/ProviderLogin';
 import ProviderRegister from './provider/ProviderRegister';
 import { decodeUser } from '../util/index';
 import Home from './Home';
-import ProposalAd from "./ProposalAd";
 import ProposalForm from "./ProposalAd/ProposalForm";
 
 const userFromStorage = decodeUser();
@@ -20,36 +17,56 @@ const userFromStorage = decodeUser();
 function App() {
   
   const [loggeduser,setUser]= useState(userFromStorage);
-  //const [loggedInCustomer, setLoggedInCustomer] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  //to check if customer is logged or not 
+  const [ isCustomer, setIsCustomer] = useState(false);
+  
+
+  
 
   return (
     <Router>
-      <Header setLoggedIn={setLoggedIn} user={loggeduser} setUser={setUser}/>
+      <Header 
+        setLoggedIn={setLoggedIn} 
+        user={loggeduser} 
+        setUser={setUser}
+        isCustomer={isCustomer}
+        setIsCustomer={setIsCustomer}
+      />
       <Switch>
-        <Route path="/providerlogin" exact>
+        <Route path="/login/provider" exact>
          <ProviderLogin loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} /> 
         </Route>
-        <Route path="/providerregister" exact>
+        <Route path="/register/provider" exact>
           <ProviderRegister loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} />
         </Route>
-        <Route path="/customerlogin">
-          <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} /> 
+        <Route path="/login/customer" exact>
+          <Login 
+            setIsCustomer={setIsCustomer} 
+            loggedIn={loggedIn} 
+            setLoggedIn={setLoggedIn} 
+            setUser={setUser} 
+          /> 
         </Route>
-        <Route path="/customerregister">
-          <Register loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} />
+        <Route path="/register/customer" exact>
+          <Register 
+            setIsCustomer={setIsCustomer} 
+            loggedIn={loggedIn} 
+            setLoggedIn={setLoggedIn} 
+            setUser={setUser} 
+          />
         </Route>
         <Route path="/" exact>
-          <Home user={loggeduser}/>
+          <Home />
         </Route>
-        <Route path="/postAd">
-         <PostAd  user={loggeduser}/>
+        <Route path="/postAd" exact>
+          {<PostAd  user={loggeduser}/>} 
         </Route>
-        <Route path="/proposal">
-          <ProposalAd  setUser={setUser}/>
-        </Route>
-        <Route path="/ProposalForm/:id">
-          <ProposalForm />
+        <Route path="/proposalform/:id" exact>
+         { (loggedIn && !isCustomer) ?
+            <ProposalForm user={loggeduser}/> :
+            <Redirect to="/login/provider"/> 
+          }
         </Route>
       </Switch>
       <Footer />

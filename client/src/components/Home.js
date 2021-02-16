@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import './Home.css';
+import ProposalAd from './ProposalAd';
 
 export default function Home(props){
   return (
+    <>
     <div className="home-outer-container">
       <div className="home-container">
         <div className="home-customer-container">
@@ -15,8 +17,8 @@ export default function Home(props){
               <p>and I need help for me or a loved one</p>
             </div>
             <div class="decision-making">
-              <NavLink className="decision-link" to="/customerlogin">LOGIN</NavLink >
-              <NavLink className="decision-link" to="/customerregister">REGISTER</NavLink >
+              <NavLink className="decision-link" to="/login/customer">LOGIN</NavLink >
+              <NavLink className="decision-link" to="/register/customer">REGISTER</NavLink >
             </div>
           </div>
         </div>
@@ -27,8 +29,8 @@ export default function Home(props){
               <p>looking for an opportunity</p>
             </div>
             <div class="decision-making">
-              <NavLink className="decision-link" to='/providerlogin' >LOGIN</NavLink>
-              <NavLink className="decision-link" to='/providerregister'>REGISTER</NavLink >
+              <NavLink className="decision-link" to='/login/provider' >LOGIN</NavLink>
+              <NavLink className="decision-link" to='/register/provider'>REGISTER</NavLink >
             </div>
           </div>
           <div className="home-customer-image">
@@ -37,5 +39,12 @@ export default function Home(props){
         </div>
       </div>
     </div>
+    <div className="proposal-home-container">
+    <ProposalAd />
+
+    </div>
+  
+    
+    </>
   )
 }

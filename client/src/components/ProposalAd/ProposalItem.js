@@ -9,7 +9,7 @@ export default function ProposalItem(props){
 
     //get symptomes for a specific job posting ID 
     useEffect(() => {
-        axios.get(`http://localhost:8007/api/jobpost/symptomes/${props.id}`).then(res =>{
+        axios.get(`http://localhost:8010/api/jobpost/symptomes/${props.id}`).then(res =>{
           setSymptomes(res.data);     
         });      
     
@@ -72,7 +72,7 @@ export default function ProposalItem(props){
                   </div>
                   <div className="item-budget-apply">
                       <div className="item-budget">Budget: ${props.maxprice}</div>
-                      <Link to={`/ProposalForm/${props.id}`}>
+                      <Link to={`/proposalform/${props.id}`}>
                       <button>APPLY</button>
                       </Link>
                   </div>

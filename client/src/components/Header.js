@@ -17,7 +17,7 @@ export default function Header(props) {
     return (
       <nav className="nav-container">
           <div className="nav-div-image">
-            <img src="/image/logo.png" alt="logo" />
+            <Link to="/"><img src="/image/logo.png" alt="logo" /></Link>           
           </div>
           {user && <div className="nav-links">
             <span className="nav-link-id" onClick={(event) => handleClick(event)}>Logout</span>

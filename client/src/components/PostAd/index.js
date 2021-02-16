@@ -30,6 +30,7 @@ export default function PostAd(props){
   const [timeline, setTimeline] = useState(0)
 
   const [state, setState]=useState({
+    title:'',
     appointmentFor:'',
     description:'',
     symptomesId: [],

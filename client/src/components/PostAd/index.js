@@ -10,7 +10,7 @@ import Landing from "./Landing";
 
 //helper filer
 import useVisualMode from '../../hooks/useVisualMode';
-import { withRouter } from 'react-router-dom' ;
+import { useHistory } from "react-router-dom";
 
 //DECLEARING CONSTANTS
 const LANDING = "LANDING";
@@ -53,6 +53,8 @@ export default function PostAd(props){
  });
  /*  hooks end  */
 
+  //local variable to use history method of react router method
+  let history = useHistory();
 
  /* local functions start*/
 
@@ -95,7 +97,7 @@ function post() {
   const response = axios.post('http://localhost:8010/api/jobpost', {jobPostData: jobPostObj})
   .then(res => {console.log(res,"response")})
   .catch(e=>console.log(e,"error"));
-
+  history.push('/customer/dashboard');
   return response;
 }
 /* local functions end */

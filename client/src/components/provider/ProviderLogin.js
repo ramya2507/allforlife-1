@@ -37,7 +37,7 @@ export default function ProviderLogin(props) {
         }
     }
 
-    return !props.loggedIn ?(
+    return !props.user ?(
         <div className="login-container">
             <div className="login">  
                 <form className="login-form" onSubmit={event => event.preventDefault()} >

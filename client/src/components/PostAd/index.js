@@ -10,7 +10,7 @@ import Landing from "./Landing";
 
 //helper filer
 import useVisualMode from '../../hooks/useVisualMode';
-import { Redirect } from "react-router-dom";
+import { withRouter } from 'react-router-dom' ;
 
 //DECLEARING CONSTANTS
 const LANDING = "LANDING";
@@ -95,7 +95,7 @@ function post() {
   const response = axios.post('http://localhost:8010/api/jobpost', {jobPostData: jobPostObj})
   .then(res => {console.log(res,"response")})
   .catch(e=>console.log(e,"error"));
-  <Redirect to='/customer/dashboard' />
+
   return response;
 }
 /* local functions end */

@@ -142,8 +142,10 @@
  padding-right:10% ;
  text-align: center;
 }
-.profile-newpost button{
+.newjobpost-link{
   width: 60%;
+  text-align: center;
+  text-decoration: none;
   padding-top:3%;
   padding-bottom: 3%;
   padding-left: 5%;

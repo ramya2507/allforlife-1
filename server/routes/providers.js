@@ -62,7 +62,8 @@ module.exports = (db) => {
           const payload ={
             user:{
               id:newUser.id,
-              userName:newUser.username
+              userName:newUser.username,
+              type:"provider"
             }
           };
 
@@ -102,7 +103,8 @@ module.exports = (db) => {
           const payload ={
             user:{
               id:user.id,
-              userName:user.username
+              userName:user.username,
+              type:"provider"
             }
           };
           jwt.sign(

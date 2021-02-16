@@ -35,7 +35,8 @@ module.exports = (db) => {
           const payload = {
             user: {
               id: newUser.id,
-              userName: newUser.username
+              userName: newUser.username,
+              type:'customer'
             }
           };
           //res.json(payload);
@@ -73,7 +74,8 @@ module.exports = (db) => {
         const payload = {
           user: {
             id: loggedUser.id,
-            userName: loggedUser.username
+            userName: loggedUser.username,
+            type:'customer'
           }
         };
         //sending tokens

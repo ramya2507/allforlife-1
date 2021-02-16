@@ -18,13 +18,8 @@ import CustomerDashboard from './customer/CustomerDashboard';
 function App() {
   const userFromStorage = decodeUser()|| {};
   const [loggeduser,setUser]= useState(userFromStorage.user);
-  console.log(userFromStorage);
+  console.log(userFromStorage.user);
   const [loggedIn, setLoggedIn] = useState(false);
-  //to check if customer is logged or not 
-  const [ isCustomer, setIsCustomer] = useState(false);
-  
-
-  
 
   return (
     <Router>
@@ -32,8 +27,6 @@ function App() {
         setLoggedIn={setLoggedIn} 
         user={loggeduser} 
         setUser={setUser}
-        isCustomer={isCustomer}
-        setIsCustomer={setIsCustomer}
       />
       <Switch>
         <Route path="/login/provider" exact>
@@ -44,15 +37,14 @@ function App() {
         </Route>
         <Route path="/login/customer" exact>
           <Login 
-            setIsCustomer={setIsCustomer} 
             loggedIn={loggedIn} 
-            setLoggedIn={setLoggedIn} 
+            setLoggedIn={setLoggedIn}
+            user={loggeduser} 
             setUser={setUser} 
           /> 
         </Route>
         <Route path="/register/customer" exact>
           <Register 
-            setIsCustomer={setIsCustomer} 
             loggedIn={loggedIn} 
             setLoggedIn={setLoggedIn} 
             setUser={setUser} 
@@ -62,16 +54,16 @@ function App() {
           <Home />
         </Route>
         <Route path="/postAd" exact>
-          {isCustomer && <PostAd  user={loggeduser}/>} 
+          {(loggeduser && loggeduser.type === "customer") ? <PostAd  user={loggeduser}/> : <Redirect to="/" />} 
         </Route>
         <Route path="/proposalform/:id" exact>
-         { (loggedIn && !isCustomer) ?
+         { (loggeduser && loggeduser.type === "provider") ?
             <ProposalForm user={loggeduser}/> :
             <Redirect to="/login/provider"/> 
           }
         </Route>
         <Route path="/customer/dashboard" exact>
-          {isCustomer && <CustomerDashboard user={loggeduser}/> }
+          {(loggeduser && loggeduser.type === "customer") ? <CustomerDashboard user={loggeduser}/> :<Redirect to="/" />}
         </Route>
       </Switch>
       <Footer />

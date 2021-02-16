@@ -41,10 +41,7 @@ export default function Home(props){
     </div>
     <div className="proposal-home-container">
     <ProposalAd />
-
-    </div>
-  
-    
+    </div>   
     </>
   )
 }

@@ -3,6 +3,7 @@ import "./CustomerDashboard.css";
 import {useState, useEffect} from "react";
 import axios from "axios";
 import ProposalItem from "../ProposalAd/ProposalItem";
+import { Link } from "react-router-dom";
 
 
 export default function CustomerDashboard(props) {
@@ -60,7 +61,7 @@ export default function CustomerDashboard(props) {
                 </div>
                 <div className="profile-newpost">
                     <div>Create a new Post</div>
-                    <button>CREATE POST</button>
+                    <Link to="/postAd" className='newjobpost-link'>CREATE POST</Link>
                     <img src={`/image/image2.jpg`} alt="dashboard"/>
                 </div>
             </div>

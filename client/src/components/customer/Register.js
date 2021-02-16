@@ -42,7 +42,6 @@ export default function Register(props) {
                       setError("");
                       props.setUser(providerData.user);
                       props.setLoggedIn(true);
-                      props.setIsCustomer(true);
                    }
             })
             .catch(err => {

@@ -9,17 +9,12 @@ export default function Header(props) {
     localStorage.setItem("token", "");
     setUser(undefined);
     props.setLoggedIn(false);
-    if(props.isCustomer){
-      props.setIsCustomer(false);
-      //console.log("I am from logout "+ props.isCustomer);
-    }
-    <Redirect to="/" />
   }
 
     return (
       <nav className="nav-container">
           <div className="nav-div-image">
-            <img src="./image/logo.png" alt="logo" />
+            <img src="/image/logo.png" alt="logo" />
           </div>
           {user && <div className="nav-links">
             <span className="nav-link-id"> Hi {user.userName}</span>

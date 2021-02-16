@@ -28,7 +28,6 @@ export default function ProviderLogin(props) {
                     const providerData = decodeUser();
                     setError("");
                     props.setUser(providerData.user);
-                    props.setLoggedIn(true);
                 }
             })
             .catch(err =>{

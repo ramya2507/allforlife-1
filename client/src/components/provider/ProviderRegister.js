@@ -79,7 +79,7 @@ export default function Register(props) {
         } 
     }
 
-    return !props.loggedIn ? (
+    return !props.user ? (
         <div className="register-container">
             <div className="register">
                 <form className="register-form" onSubmit={event => event.preventDefault()} >

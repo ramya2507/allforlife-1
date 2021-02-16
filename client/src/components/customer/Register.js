@@ -38,10 +38,9 @@ export default function Register(props) {
             axios.post(`http://localhost:8010/api/register`,user).then(res =>{
                     if(res.status === 200){
                       localStorage.setItem("token",res.data.token);
-                      const providerData = decodeUser();
+                      const customerData = decodeUser();
                       setError("");
-                      props.setUser(providerData.user);
-                      props.setLoggedIn(true);
+                      props.setUser(customerData.user);
                    }
             })
             .catch(err => {
@@ -52,7 +51,7 @@ export default function Register(props) {
 
     } 
 
-    return !props.loggedIn ? (
+    return !props.user ? (
         <div className="register-container">
             <div className="register">
                 <form className="register-form" onSubmit={event => event.preventDefault()} >

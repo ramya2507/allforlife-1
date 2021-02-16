@@ -27,10 +27,9 @@ export default function Login(props) {
              { userName : formValues.userName, password :formValues.password}).then(res =>{
                 if(res.status === 200) {
                     localStorage.setItem("token",res.data.token);
-                    const providerData = decodeUser();
+                    const customerData = decodeUser();
                     setError("");
-                    props.setUser(providerData.user);
-                    props.setLoggedIn(true);
+                    props.setUser(customerData.user);
                 }
             })
             .catch(err => {

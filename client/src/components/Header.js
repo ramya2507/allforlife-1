@@ -11,7 +11,6 @@ export default function Header(props) {
     event.preventDefault();
     localStorage.setItem("token", "");
     setUser(undefined);
-    props.setLoggedIn(false);
     history.push('/');
   }
 

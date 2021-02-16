@@ -128,7 +128,7 @@ const getJobsPosting = (options, db) => {
 //function to get jobposting from the database for a specific customer ID
 const getJobsPostingByCustomerID = (id, db) => {
   return db.query(`
-  SELECT * FROM job_postings WHERE customer_id = $1`, [id])
+  SELECT * FROM job_postings WHERE customer_id = $1 ORDER BY created_at DESC`, [id])
   .then(res => {
     return res.rows;
   });

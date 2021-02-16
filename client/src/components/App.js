@@ -18,37 +18,22 @@ import CustomerDashboard from './customer/CustomerDashboard';
 function App() {
   const userFromStorage = decodeUser()|| {};
   const [loggeduser,setUser]= useState(userFromStorage.user);
-  console.log(userFromStorage.user);
-  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <Router>
-      <Header 
-        setLoggedIn={setLoggedIn} 
-        user={loggeduser} 
-        setUser={setUser}
-      />
+      <Header user={loggeduser} setUser={setUser}/>
       <Switch>
         <Route path="/login/provider" exact>
-         <ProviderLogin loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} /> 
+         <ProviderLogin user={loggeduser} setUser={setUser} /> 
         </Route>
         <Route path="/register/provider" exact>
-          <ProviderRegister loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} />
+          <ProviderRegister user={loggeduser}  setUser={setUser} />
         </Route>
         <Route path="/login/customer" exact>
-          <Login 
-            loggedIn={loggedIn} 
-            setLoggedIn={setLoggedIn}
-            user={loggeduser} 
-            setUser={setUser} 
-          /> 
+          <Login user={loggeduser} setUser={setUser} /> 
         </Route>
         <Route path="/register/customer" exact>
-          <Register 
-            loggedIn={loggedIn} 
-            setLoggedIn={setLoggedIn} 
-            setUser={setUser} 
-          />
+          <Register user={loggeduser}  setUser={setUser} />
         </Route>
         <Route path="/" exact>
           <Home />
@@ -63,7 +48,9 @@ function App() {
           }
         </Route>
         <Route path="/customer/dashboard" exact>
-          {(loggeduser && loggeduser.type === "customer") ? <CustomerDashboard user={loggeduser}/> :<Redirect to="/" />}
+          {(loggeduser && loggeduser.type === "customer") ? 
+          <CustomerDashboard user={loggeduser}/> 
+          :<Redirect to="/" />}
         </Route>
       </Switch>
       <Footer />

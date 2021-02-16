@@ -60,7 +60,7 @@ export default function Review(props) {
                                 <div className="review-availability-freq">
                                     <p>{props.appointmentFrequency}</p>
                                 </div>
-                                <img src={`./image/${props.timeRequirement}.png`} alt={props.timeRequirement}></img>
+                                <img src={`/image/${props.timeRequirement}.png`} alt={props.timeRequirement}></img>
                                 </div>                          
                                 From<input type="text"  value={props.availabilityFrom} disabled /> to
                                 <input type="text"  value={props.availabilityTo} disabled/>

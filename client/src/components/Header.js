@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./Header.css";
 
 export default function Header(props) {
@@ -11,8 +11,9 @@ export default function Header(props) {
     props.setLoggedIn(false);
     if(props.isCustomer){
       props.setIsCustomer(false);
-      console.log("I am from logout "+ props.isCustomer);
+      //console.log("I am from logout "+ props.isCustomer);
     }
+    <Redirect to="/" />
   }
 
     return (

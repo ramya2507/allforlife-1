@@ -125,10 +125,20 @@ const getJobsPosting = (options, db) => {
   });
 }
 
+//function to get jobposting from the database for a specific customer ID
+const getJobsPostingByCustomerID = (id, db) => {
+  return db.query(`
+  SELECT * FROM job_postings WHERE customer_id = $1`, [id])
+  .then(res => {
+    return res.rows;
+  });
+}
+
 module.exports = {
   createNewPost,
   getSymptomes,
   getSymptomesByID,
   getJobsPostingByID,
-  getJobsPosting
+  getJobsPosting,
+  getJobsPostingByCustomerID
 };

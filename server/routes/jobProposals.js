@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { createNewProposal } = require('../util/jobProposalsHelpers');
+const { createNewProposal, getNumberOfProposalsByCustomerID } = require('../util/jobProposalsHelpers');
 
 //api route
 module.exports = (db) => {
@@ -30,9 +30,15 @@ module.exports = (db) => {
       
   });
 
-
-
-
+   //route to get the number of proposals for a specific customer
+   router.get('/customer/:id', (req, res) => {
+     console.log('I am working');
+    getNumberOfProposalsByCustomerID(req.params.id, db)
+    .then(response => {
+      response.json(response)
+    })
+    .catch(e => res.json("error"));
+    });
 
   return router;
 };

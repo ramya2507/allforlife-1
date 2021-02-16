@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { createNewPost, getSymptomes, getJobsPosting,getSymptomesByID,getJobsPostingByID} = require('../util/jobPostHelpers');
+const { createNewPost, getSymptomes, getJobsPosting,getSymptomesByID,getJobsPostingByID, getJobsPostingByCustomerID } = require('../util/jobPostHelpers');
 
 //api route
 module.exports = (db) => {
@@ -80,6 +80,16 @@ module.exports = (db) => {
       res.json(response);
     })
     .catch(e => res.json({e}));
+  });
+
+  // api to retreive jobposting for a specific customer 
+  router.get('/customer/:id', (req, res) => {
+    console.log(req.params.id);
+    getJobsPostingByCustomerID(req.params.id, db)
+      .then(response => {
+        res.json(response);
+      })
+      .catch(e => res.json({e}));
   });
 
   return router;

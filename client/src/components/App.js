@@ -11,12 +11,14 @@ import ProviderRegister from './provider/ProviderRegister';
 import { decodeUser } from '../util/index';
 import Home from './Home';
 import ProposalForm from "./ProposalAd/ProposalForm";
+import CustomerDashboard from './customer/CustomerDashboard';
 
-const userFromStorage = decodeUser();
+
 
 function App() {
-  
-  const [loggeduser,setUser]= useState(userFromStorage);
+  const userFromStorage = decodeUser()|| {};
+  const [loggeduser,setUser]= useState(userFromStorage.user);
+  console.log(userFromStorage);
   const [loggedIn, setLoggedIn] = useState(false);
   //to check if customer is logged or not 
   const [ isCustomer, setIsCustomer] = useState(false);
@@ -60,13 +62,16 @@ function App() {
           <Home />
         </Route>
         <Route path="/postAd" exact>
-          {<PostAd  user={loggeduser}/>} 
+          {isCustomer && <PostAd  user={loggeduser}/>} 
         </Route>
         <Route path="/proposalform/:id" exact>
          { (loggedIn && !isCustomer) ?
             <ProposalForm user={loggeduser}/> :
             <Redirect to="/login/provider"/> 
           }
+        </Route>
+        <Route path="/customer/dashboard" exact>
+          {isCustomer && <CustomerDashboard user={loggeduser}/> }
         </Route>
       </Switch>
       <Footer />

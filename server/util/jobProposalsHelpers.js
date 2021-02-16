@@ -29,11 +29,23 @@ const createNewProposal = (jobProposalObj, db) => {
   }
   
 
-  
+ //get the number of proposales for specific customer
+const getNumberOfProposalsByCustomerID = (id, db) => {
+  return db.query(` SELECT count(job_proposals.id) FROM job_proposals INNER JOIN job_postings 
+  ON job_posting_id = job_postings.id AND customer_id=$1 GROUP BY customer_id
+  `,[id])
+    .then(res => {
+            return res.rows;
+          })
+          .catch(res => {
+            return null;
+          });
+}  
 
 
 
   
   module.exports = {
-    createNewProposal
+    createNewProposal,
+    getNumberOfProposalsByCustomerID
   };

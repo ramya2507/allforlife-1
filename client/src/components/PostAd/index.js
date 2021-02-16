@@ -6,10 +6,11 @@ import Preferences from "./Preferences";
 import Budget from "./Budget";
 import Availability from "./Availability";
 import Review from "./Review";
-import Landing from "./Landing"
+import Landing from "./Landing";
 
 //helper filer
-import useVisualMode from '../../hooks/useVisualMode'
+import useVisualMode from '../../hooks/useVisualMode';
+import { Redirect } from "react-router-dom";
 
 //DECLEARING CONSTANTS
 const LANDING = "LANDING";
@@ -84,15 +85,17 @@ function addSymptomes(newSymptomes, id) {
 //function submit jobpost
 
 function post() {
-  console.log(state)
+ // console.log(state)
   const jobPostObj = {
     ...state,
     customerId: props.user.id
   }
   console.log(jobPostObj, "jobpost")
 
-  const response = axios.post('http://localhost:8010/api/jobpost', {jobPostData: jobPostObj}).then(res => {console.log(res,"response")}).catch(e=>console.log(e,"error"))
-
+  const response = axios.post('http://localhost:8010/api/jobpost', {jobPostData: jobPostObj})
+  .then(res => {console.log(res,"response")})
+  .catch(e=>console.log(e,"error"));
+  <Redirect to='/customer/dashboard' />
   return response;
 }
 /* local functions end */

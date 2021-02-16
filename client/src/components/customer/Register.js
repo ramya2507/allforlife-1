@@ -83,5 +83,5 @@ export default function Register(props) {
                 </form>
             </div>       
         </div>
-    ):<Redirect to='/'></Redirect>;
+    ):<Redirect to='/customer/dashboard'></Redirect>;
 }

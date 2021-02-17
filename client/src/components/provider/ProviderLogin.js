@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { decodeUser } from "../../util/index";
 
 export default function ProviderLogin(props) {
@@ -50,6 +50,8 @@ export default function ProviderLogin(props) {
                     <input type="password" name="password" value= {formValues.password} onChange = {handleChange}  placeholder="Password"/>
                     <br/>
                     <input type="submit" value="LOGIN" onClick={fetchUser} className="login-button"/>
+                    <br />
+                    <Link to='/register/provider' style={{margin:'1em'}}>Click Here to Register</Link>
                 </form>
             </div>
         </div>

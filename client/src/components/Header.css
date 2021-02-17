@@ -15,6 +15,7 @@
   width:20%;
   height: 100%;
   margin-left: 5%;
+  padding-left: 5%;
   display: flex;
   justify-content: space-around;
 }

@@ -10,7 +10,7 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
     console.log(req.body, "maybe")
-    const { customerId, title,appointmentFor, description, symptomes, symptomesId, insurance, therapy, sexuality, age, language, ethnicity, faith, typeOfPayment, maxPrice, minPrice, appointmentFrequency, timeRequirement, availabilityFrom, availabilityTo } = req.body.jobPostData;
+    const { customerId, title, appointmentFor, description, symptomes, symptomesId, insurance, therapy, sexuality, age, language, ethnicity, faith, country,typeOfPayment, maxPrice, minPrice, appointmentFrequency, timeRequirement, availabilityFrom, availabilityTo, timeZones} = req.body.jobPostData;
     const jobPostObj = {
       customerId: customerId,
       title,
@@ -25,14 +25,15 @@ module.exports = (db) => {
       language:language,
       ethnicity:ethnicity,
       faith:faith,
-      country:'',
+      country,
       typeOfPayment:typeOfPayment,
       minPrice:minPrice,
       maxPrice:maxPrice,
       appointmentFrequency:appointmentFrequency,
       timeRequirement:timeRequirement,
       availabilityTo:availabilityTo,
-      availabilityFrom:availabilityFrom
+      availabilityFrom:availabilityFrom,
+      postcreationtimezone:timeZones
     };
 
     createNewPost(jobPostObj, db)

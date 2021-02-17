@@ -10,14 +10,14 @@ const createNewPost = (jobPostObj, db) => {
     }
   }
   console.log(jobPostObj, "jobbbbbbb");
-  const {customerId, title, appointmentFor, description, symptomes,symptomesId, insurance,  therapy, age, sexuality, language, ethnicity, faith, typeOfPayment, maxPrice, minPrice, appointmentFrequency, timeRequirement, availabilityFrom, availabilityTo } = jobPostObj;
+  const {customerId, title, appointmentFor, description, symptomes,symptomesId, insurance,  therapy, age, sexuality, language, ethnicity, faith, country, typeOfPayment, maxPrice, minPrice, appointmentFrequency, timeRequirement, availabilityFrom, availabilityTo, postcreationtimezone} = jobPostObj;
   //console.log(symptomes, "hello")
   
   return db.query(`
-  INSERT INTO job_postings (customer_id, title, appointmentFor, description, therapy, sexuality, age, language, ethnicity, faith, typeOfPayment, maxPrice, minPrice, appointmentFrequency, timeRequirement, availabilityFrom, availabilityTo, insurance)
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
+  INSERT INTO job_postings (customer_id, title, appointmentFor, description, therapy, sexuality, age, language, ethnicity, faith, country, typeOfPayment, maxPrice, minPrice, appointmentFrequency, timeRequirement, availabilityFrom, availabilityTo, insurance,postCreationTimeZone)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18,$19,$20)
   RETURNING id as job_posting_id;
-  `, [customerId, title,appointmentFor, description, therapy, sexuality, age, language, ethnicity, faith, typeOfPayment, maxPrice, minPrice, appointmentFrequency, timeRequirement, availabilityFrom, availabilityTo, insurance])
+  `, [customerId, title,appointmentFor, description, therapy, sexuality, age, language, ethnicity, faith, country, typeOfPayment, maxPrice, minPrice, appointmentFrequency, timeRequirement, availabilityFrom, availabilityTo, insurance,postcreationtimezone])
     .then(res => {
       const jobPostingId = res.rows[0].job_posting_id;
       //console.log(jobPostingId, "1st")

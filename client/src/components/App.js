@@ -13,6 +13,7 @@ import Home from './Home';
 import ProposalForm from "./ProposalAd/ProposalForm";
 import CustomerDashboard from './customer/CustomerDashboard';
 import ProviderDashboard from './provider/ProviderDashboard';
+import CustomerProposals from './customer/CustomerProposals';
 
 
 
@@ -40,7 +41,10 @@ function App() {
           <Home />
         </Route>
         <Route path="/postAd" exact>
-          {(loggeduser && loggeduser.type === "customer") ? <PostAd  user={loggeduser}/> : <Redirect to="/" />} 
+          {(loggeduser && loggeduser.type === "customer") ? 
+           <PostAd  user={loggeduser}/> : 
+           <Redirect to="/" />
+          } 
         </Route>
         <Route path="/proposalform/:id" exact>
          { (loggeduser && loggeduser.type === "provider") ?
@@ -51,6 +55,11 @@ function App() {
         <Route path="/customer/dashboard" exact>
           {(loggeduser && loggeduser.type === "customer") ? 
           <CustomerDashboard user={loggeduser}/> 
+          :<Redirect to="/" />}
+        </Route>
+        <Route path="/customer/proposal" exact>
+          {(loggeduser && loggeduser.type === "customer") ? 
+          <CustomerProposals user={loggeduser}/> 
           :<Redirect to="/" />}
         </Route>
         <Route path="/provider/dashboard" exact>

@@ -9,7 +9,7 @@
   border: solid 2px black;
   background-image: url('../../images/woman_big-min.png');
   background-size: cover;
-  width: 100%;
+  width: 100vw;
 }
 
 .alert-error {
@@ -62,6 +62,7 @@
   cursor:pointer;
   padding:0px;
   margin:0px;
+  margin-bottom: 2%;
   height: 40px;
 }
 .login-form input[type="submit"]:hover {

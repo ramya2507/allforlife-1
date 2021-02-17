@@ -41,7 +41,10 @@ export default function CustomerDashboard(props) {
                     <img src={`/image/image1.png`} alt="dashboard"/>
                     <div className="profile-newoffers">You have  {number} { number > 1 ? "offers" : "offer"} for your posts.</div>
                     <div className="profile-button">
-                        <button>CLICK TO SEE</button>
+                        <div className="profile-button-link-id"> 
+                          <Link className="profile-proposal-link"to="/customer/proposal" >CLICK TO SEE</Link>
+                        </div>
+                       
                     </div>
                 </div>
             </div>

@@ -12,18 +12,18 @@ export default function Landing(props) {
                   <div className="landing"> 
                       <h3>Who need help ?</h3>
                       <div className="landing-for">
-                        <div className="myself">
+                        <div className="loved-one">
                             <input type="radio"  name="appointmentFor" value="mySelf" onChange={props.handleChange} />
-                            <div className="myself-desc">
-                                <img src={`./image/mySelf.png`} alt="mySelf"></img>
+                            <div className="myself-desc" style={{marginBottom:'3%'}}>
+                                <img src={`/image/mySelf.png`} alt="mySelf"></img>
                                 <div className="myself-title">Myself</div>
-                                <span className="myself-text">I am looking professional help for myself</span>
+                                <span className="myself-text" >I am looking professional help for myself</span>
                             </div>
                         </div>
                         <div className="loved-one">
                             <input type="radio"  name="appointmentFor" value="lovedOne" onChange={props.handleChange} />
                             <div className="myself-desc">
-                                <img src={`./image/lovedOne.png`} alt="lovedOne"></img>
+                                <img src={`/image/lovedOne.png`} alt="lovedOne"></img>
                                 <div className="myself-title">Loved One</div>
                                 <span className="myself-text">I am looking professional help for someone else</span>
                                 </div>

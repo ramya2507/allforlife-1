@@ -9,7 +9,7 @@ export default function Home(props){
       <div className="home-container">
         <div className="home-customer-container">
           <div className="home-customer-image">
-            <img className="customer-login-pic" src="./image/customer_login.png" alt="customer-login"></img>
+            <img className="customer-login-pic" src="/image/customer_login.png" alt="customer-login"></img>
           </div>
           <div className="home-inner-container">
             <div className="home-text-container">
@@ -17,8 +17,11 @@ export default function Home(props){
               <p>and I need help for me or a loved one</p>
             </div>
             <div className="decision-making">
-              <NavLink className="decision-link" to="/login/customer">LOGIN</NavLink >
-              <NavLink className="decision-link" to="/register/customer">REGISTER</NavLink >
+              <div className="decision-making-link">
+                <NavLink className="decision-link" to='/login/customer' >
+                  SELECT
+                </NavLink>
+              </div>
             </div>
           </div>
         </div>
@@ -29,12 +32,15 @@ export default function Home(props){
               <p>looking for an opportunity</p>
             </div>
             <div className="decision-making">
-              <NavLink className="decision-link" to='/login/provider' >LOGIN</NavLink>
-              <NavLink className="decision-link" to='/register/provider'>REGISTER</NavLink >
+              <div className="decision-making-link">
+                <NavLink className="decision-link" to='/login/provider' >
+                  SELECT
+                </NavLink>
+              </div>
             </div>
           </div>
           <div className="home-customer-image">
-            <img className="customer-login-pic" src="./image/provider_login.jpg" alt="customer-login"></img>
+            <img className="customer-login-pic" src="/image/provider_login1.jpg" alt="customer-login"></img>
           </div>
         </div>
       </div>

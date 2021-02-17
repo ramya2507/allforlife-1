@@ -80,5 +80,6 @@
   height: 35%;
 }
 .proposal-home-container .proposalad-filter{
-   display: none;
+  width:100%;
+  display: none;
 }

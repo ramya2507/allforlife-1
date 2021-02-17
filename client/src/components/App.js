@@ -12,6 +12,7 @@ import { decodeUser } from '../util/index';
 import Home from './Home';
 import ProposalForm from "./ProposalAd/ProposalForm";
 import CustomerDashboard from './customer/CustomerDashboard';
+import ProviderDashboard from './provider/ProviderDashboard';
 
 
 
@@ -50,6 +51,11 @@ function App() {
         <Route path="/customer/dashboard" exact>
           {(loggeduser && loggeduser.type === "customer") ? 
           <CustomerDashboard user={loggeduser}/> 
+          :<Redirect to="/" />}
+        </Route>
+        <Route path="/provider/dashboard" exact>
+          {(loggeduser && loggeduser.type === "provider") ? 
+          <ProviderDashboard user={loggeduser}/> 
           :<Redirect to="/" />}
         </Route>
       </Switch>

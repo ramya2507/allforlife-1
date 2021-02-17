@@ -16,7 +16,7 @@ export default function Home(props){
               <h3>I'm USER</h3>
               <p>and I need help for me or a loved one</p>
             </div>
-            <div class="decision-making">
+            <div className="decision-making">
               <NavLink className="decision-link" to="/login/customer">LOGIN</NavLink >
               <NavLink className="decision-link" to="/register/customer">REGISTER</NavLink >
             </div>
@@ -28,7 +28,7 @@ export default function Home(props){
               <h3>I'm PROVIDER</h3>
               <p>looking for an opportunity</p>
             </div>
-            <div class="decision-making">
+            <div className="decision-making">
               <NavLink className="decision-link" to='/login/provider' >LOGIN</NavLink>
               <NavLink className="decision-link" to='/register/provider'>REGISTER</NavLink >
             </div>

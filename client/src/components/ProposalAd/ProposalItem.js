@@ -1,7 +1,6 @@
 
 import axios from "axios";
 import {useEffect, useState} from "react";
-import ProposalForm from "./ProposalForm";
 import { Link } from 'react-router-dom';
 
 export default function ProposalItem(props){

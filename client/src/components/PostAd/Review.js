@@ -20,7 +20,11 @@ export default function Review(props) {
                 <div className="review-container">
                     <div className="review-container-left">
                         <fieldset>
-                            <legend>Problem description</legend>
+                            <legend>Title</legend>
+                            <p>{props.title}</p>
+                        </fieldset>
+                        <fieldset>
+                           <legend>Problem description</legend>
                             <p> {props.description}
                             </p>
                         </fieldset>

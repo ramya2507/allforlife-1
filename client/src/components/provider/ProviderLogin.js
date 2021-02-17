@@ -55,5 +55,5 @@ export default function ProviderLogin(props) {
                 </form>
             </div>
         </div>
-    ): <Redirect to='/'></Redirect>;
+    ): <Redirect to='/provider/dashboard'></Redirect>;
 }

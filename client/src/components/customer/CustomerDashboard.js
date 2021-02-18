@@ -23,10 +23,6 @@ export default function CustomerDashboard(props) {
             });
      },[id]);
 
-    let number=0;
-    if(count.length >0){
-        number=count[0].count;
-    }
 
     return(
         <>          
@@ -39,7 +35,7 @@ export default function CustomerDashboard(props) {
                 <h3>Offers  <span className="yellow-icon">◣</span> </h3>
                 <div className="profile-offers">
                     <img src={`/image/image1.png`} alt="dashboard"/>
-                    <div className="profile-newoffers">You have  {number} { number > 1 ? "offers" : "offer"} for your posts.</div>
+                    <div className="profile-newoffers">You have  {count.count} { count.count > 1 ? "offers" : "offer"} for your posts.</div>
                     <div className="profile-button">
                         <div className="profile-button-link-id"> 
                           <Link className="profile-proposal-link"to="/customer/proposal" >CLICK TO SEE</Link>

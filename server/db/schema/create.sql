@@ -78,6 +78,7 @@ CREATE TABLE job_proposals(
     price  INTEGER DEFAULT NULL,
     availability_days VARCHAR(255) DEFAULT NULL,
     availabilityFrom VARCHAR(255) DEFAULT NULL,
-    availabilityTo VARCHAR(255) DEFAULT NULL
+    availabilityTo VARCHAR(255) DEFAULT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 ​

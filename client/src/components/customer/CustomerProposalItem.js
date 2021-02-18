@@ -6,7 +6,7 @@ export default function CustomerProposalItem (props) {
     <div className="customer-proposal-body">
       <div className="customer-proposal-inner">
         <div className="customer-proposal-profile-picture">
-          <img  src="/image/provider_login1.jpg" alt="provider"></img>
+          <img  src="/image/providerprofilepic.png" alt="provider"></img>
         </div>
         <div className="customer-proposal-profile-summary">
           <div>

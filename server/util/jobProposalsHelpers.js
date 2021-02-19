@@ -40,7 +40,7 @@ const getNumberOfProposalsByCustomerID = (id, db) => {
 
 //function to all the information about proposal and provider
 const getProposalsByCustomerID = (id, db) => {
-  return db.query(`SELECT providers.first_name,last_name, profile_photo_url,degree,
+  return db.query(`SELECT providers.userName, providers.first_name,last_name, profile_photo_url,degree,
   aboutMe,providers.location,providers.age, providers.ethnicity,providers.therapy, 
   job_proposals.* FROM job_proposals 
   INNER JOIN job_postings ON job_posting_id = job_postings.id 
@@ -52,11 +52,25 @@ const getProposalsByCustomerID = (id, db) => {
   })
   .catch(e => null);
 }
-
+//function to get a particular proposal for a particular provider
+const getProposalsByPrososalID = (userId,proposalId, db) => {
+  return db.query(`SELECT providers.userName, providers.first_name,last_name, profile_photo_url,degree,
+  aboutMe,providers.location,providers.age, providers.ethnicity,providers.therapy, 
+  job_proposals.* FROM job_proposals 
+  INNER JOIN job_postings ON job_posting_id = job_postings.id 
+  INNER JOIN providers ON provider_id = providers.id 
+  WHERE job_proposals.id=$1 AND customer_id=$2 ORDER BY created_at DESC;`,[proposalId, userId])
+  .then(res => {
+    console.log(res.rows[0]);
+    return res.rows;
+  })
+  .catch(e => null);
+}
 
   
   module.exports = {
     createNewProposal,
     getNumberOfProposalsByCustomerID,
-    getProposalsByCustomerID
+    getProposalsByCustomerID,
+    getProposalsByPrososalID
   };

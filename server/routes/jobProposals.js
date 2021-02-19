@@ -4,7 +4,8 @@ const router = express.Router();
 
 const { createNewProposal, 
   getNumberOfProposalsByCustomerID,
-  getProposalsByCustomerID } = require('../util/jobProposalsHelpers');
+  getProposalsByCustomerID,
+  getProposalsByPrososalID } = require('../util/jobProposalsHelpers');
 
 //api route
 module.exports = (db) => {
@@ -47,6 +48,14 @@ module.exports = (db) => {
       getProposalsByCustomerID(req.params.id, db)
       .then(response => res.status(200).json(response))
       .catch(e => res.status(400).json({mesage:"Error"}));
+    })
+
+    //route to get the proposal and provider info for a specific customer and proposal id
+    router.get('/proposalitem/:userId/:proposalId',(req,res) =>{
+      getProposalsByPrososalID(req.params.userId,req.params.proposalId,db)
+      .then(response => res.status(200).json(response))
+      .catch(e => res.status(400).json({message:"Error"}))
+
     })
   return router;
 };

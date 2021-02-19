@@ -46,10 +46,7 @@ const getProposalsByCustomerID = (id, db) => {
   INNER JOIN job_postings ON job_posting_id = job_postings.id 
   INNER JOIN providers ON provider_id = providers.id 
   AND customer_id=$1 ORDER BY created_at DESC;`,[id])
-  .then(res => {
-    console.log(res.rows[0]);
-    return res.rows;
-  })
+  .then(res => res.rows)
   .catch(e => null);
 }
 //function to get a particular proposal for a particular provider
@@ -59,11 +56,8 @@ const getProposalsByPrososalID = (userId,proposalId, db) => {
   job_proposals.* FROM job_proposals 
   INNER JOIN job_postings ON job_posting_id = job_postings.id 
   INNER JOIN providers ON provider_id = providers.id 
-  WHERE job_proposals.id=$1 AND customer_id=$2 ORDER BY created_at DESC;`,[proposalId, userId])
-  .then(res => {
-    console.log(res.rows[0]);
-    return res.rows;
-  })
+  WHERE job_proposals.id=$1 AND customer_id=$2;`,[proposalId, userId])
+  .then(res => res.rows)
   .catch(e => null);
 }
 

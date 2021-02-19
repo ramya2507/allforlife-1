@@ -57,7 +57,7 @@ const getProposalsByPrososalID = (userId,proposalId, db) => {
   INNER JOIN job_postings ON job_posting_id = job_postings.id 
   INNER JOIN providers ON provider_id = providers.id 
   WHERE job_proposals.id=$1 AND customer_id=$2;`,[proposalId, userId])
-  .then(res => res.rows)
+  .then(res => res.rows[0])
   .catch(e => null);
 }
 

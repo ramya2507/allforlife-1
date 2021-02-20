@@ -55,7 +55,6 @@ module.exports = (db) => {
       getProposalsByPrososalID(req.params.userId,req.params.proposalId,db)
       .then(response => res.status(200).json(response))
       .catch(e => res.status(400).json({message:"Error"}))
-
     })
   return router;
 };

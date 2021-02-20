@@ -10,6 +10,7 @@ const users = require("./routes/users");
 const jobPost = require("./routes/jobPost");
 const providers = require("./routes/providers");
 const jobproposal = require("./routes/jobProposals");
+const notifications = require("./routes/notifications");
 
 
 //initializing middleware
@@ -40,6 +41,7 @@ app.use("/api/jobpost", jobPost(db));
 //routes for provider
 app.use("/api/providers",providers(db));
 app.use("/api/jobproposals", jobproposal(db));
+app.use("/api/notifications/",notifications(db));
 
 
 

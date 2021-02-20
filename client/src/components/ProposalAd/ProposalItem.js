@@ -64,8 +64,9 @@ export default function ProposalItem(props){
         <article className="proposalad-list-item">
                   <div className="item-description">
                      <h3>{props.title}</h3>
-                     <h4> {showinfos()} </h4>
+                     
                      <p> <strong>Description</strong> : {props.description}</p>
+                     <p> {showinfos()} </p>
                      <div className="item-symptomes-container">
                          {sympotomes.map(symptome=>{return (
                             <div className="item-symptomes" key={symptome.id}>{symptome.name}</div>
@@ -74,6 +75,7 @@ export default function ProposalItem(props){
                   </div>
                   <div className="item-budget-apply">
                       <div className="item-budget">Budget: ${props.maxprice}</div>
+                      <button>Chat</button>
                       <Link to={`/proposalform/${props.id}`}>
                       <button>APPLY</button>
                       </Link>

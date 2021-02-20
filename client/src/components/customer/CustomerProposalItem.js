@@ -1,4 +1,4 @@
-
+import {Link } from 'react-router-dom';
 
 export default function CustomerProposalItem (props) {
   return (
@@ -31,11 +31,13 @@ export default function CustomerProposalItem (props) {
                 </div>
               </div>
               <div className="customer-proposal-item-body">
-                {props.proposal.description}
+                <p>Description:{props.proposal.description}</p>
+                <p style={{fontSize:"0.6rem"}}>Budget: {props.proposal.price}</p>
               </div>
             </div>
             <div className="customer-proposal-button">
-              <button>More Info</button>
+             <Link className="link-button-button"to={`/moreinfo/${props.proposal.id}`}>
+               More Info</Link>
             </div>
             </div>
           </>

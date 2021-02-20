@@ -14,6 +14,7 @@ import ProposalForm from "./ProposalAd/ProposalForm";
 import CustomerDashboard from './customer/CustomerDashboard';
 import ProviderDashboard from './provider/ProviderDashboard';
 import CustomerProposals from './customer/CustomerProposals';
+import MoreInfo from './customer/MoreInfo';
 
 
 
@@ -66,6 +67,9 @@ function App() {
           {(loggeduser && loggeduser.type === "provider") ? 
           <ProviderDashboard user={loggeduser}/> 
           :<Redirect to="/" />}
+        </Route>
+        <Route path='/moreinfo/:id' exact>
+          <MoreInfo user={loggeduser} />
         </Route>
       </Switch>
       <Footer />

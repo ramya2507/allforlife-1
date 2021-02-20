@@ -82,3 +82,7 @@ CREATE TABLE job_proposals(
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 ​
+CREATE TABLE notifications(
+    id SERIAL PRIMARY KEY NOT NULL,
+    job_proposals_id INTEGER REFERENCES job_proposals(id) ON DELETE CASCADE
+)

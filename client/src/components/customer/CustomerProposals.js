@@ -21,7 +21,7 @@ export default function CustomerProposal(props) {
       <div className="customer-proposal-main-header">
         <h3 style={{padding:"0.4em"}}>You have recieved new Proposals</h3>
       </div>
-     {proposalInfo && proposalInfo.map(proposal => <CustomerProposalItem key={proposal.id} proposal={proposal} />)}
+     {proposalInfo && proposalInfo.map(proposal => <CustomerProposalItem key={proposal.id} proposal={proposal} user={props.user} />)}
     </div>
     </div>
 
